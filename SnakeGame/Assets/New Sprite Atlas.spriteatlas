@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 0341f9e5dff3c1e449392c40496d66c2, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - b571975029c23a34388ffdb37ea732c1: 21300000
+    - f9206d512509a83499423d103246db13: 21300000
+    - b68f27627ad021f43a7a21eb91ddaa2f: 21300000
+    - cba1055424bfc1947b26e47482624f03: 21300000
+    - 5ba91c569047d3f48a8ef199ca2cfd4d: 21300000
+    - b98c0e3f2b9ace245a7a1e5ee3c35fcd: 21300000
+    - 24882b4fd8768494787941f2921682f0: 21300000
+    - aba8e88fb659a9948ae5385e48e8ca27: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b571975029c23a34388ffdb37ea732c1, type: 3}
+  - {fileID: 21300000, guid: f9206d512509a83499423d103246db13, type: 3}
+  - {fileID: 21300000, guid: b68f27627ad021f43a7a21eb91ddaa2f, type: 3}
+  - {fileID: 21300000, guid: cba1055424bfc1947b26e47482624f03, type: 3}
+  - {fileID: 21300000, guid: 5ba91c569047d3f48a8ef199ca2cfd4d, type: 3}
+  - {fileID: 21300000, guid: b98c0e3f2b9ace245a7a1e5ee3c35fcd, type: 3}
+  - {fileID: 21300000, guid: 24882b4fd8768494787941f2921682f0, type: 3}
+  - {fileID: 21300000, guid: aba8e88fb659a9948ae5385e48e8ca27, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - WallOption
+  - Block
+  - Twitter_Logo_Blue
+  - RBall
+  - GBall
+  - LBall
+  - Ball
+  - Block 1
+  m_RenderDataMap: {}
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0

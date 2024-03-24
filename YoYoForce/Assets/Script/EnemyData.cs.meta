@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b76e3262dd8e8d147873763ebe891000
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enemy_shot: {fileID: 1891896139421645968, guid: ce47bbfbe70a03943928c780aa10d270,
+      type: 3}
+  - player: {fileID: 1907273304534059571, guid: b7c94a4565a5ca44589c5806050658e9,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

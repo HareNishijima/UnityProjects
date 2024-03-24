@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpriteAtlus
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b56690ecf7d89ca46bd5bae9eb483c53, type: 3}
+    totalSpriteSurfaceArea: 1980000
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 8fec373c924d61d68fdf0894f36163d6
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2bfab42030e5f4e4e81828279055a00c, type: 3}
+  - {fileID: 21300000, guid: cde89fb162ed67a45af1716083c40252, type: 3}
+  - {fileID: 21300000, guid: 44e49af241079844da5606ce871a8e58, type: 3}
+  - {fileID: 21300000, guid: babad7c35e8c5944aa4a91733ae6b227, type: 3}
+  - {fileID: 21300000, guid: 785c14a48c12c154cad0d42ff123a81a, type: 3}
+  - {fileID: 21300000, guid: 7b2d9067f2ab9804f9635314460b8d40, type: 3}
+  - {fileID: 21300000, guid: d64ed3971349f1846ab11e0154e49501, type: 3}
+  - {fileID: 21300000, guid: f69ef2fac3d25c04eb211b2b1c92c669, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - white
+  - Z
+  - GameOver
+  - X 1
+  - YoYoForce
+  - square
+  - C
+  - V 1
+  m_Tag: SpriteAtlus
+  m_IsVariant: 0

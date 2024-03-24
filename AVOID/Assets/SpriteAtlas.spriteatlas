@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 79358815f5463324d99e67fa16ec1573, type: 3}
+    totalSpriteSurfaceArea: 2061802
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 288488540401bdde91c047d5904a4d29
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c351c6c29120fb24b97e788516e127c0, type: 3}
+  - {fileID: 21300000, guid: 30de08639b84cad40902d73a4219346b, type: 3}
+  - {fileID: 21300000, guid: 237d6fea6b6f00c498954439b33545b6, type: 3}
+  - {fileID: 21300000, guid: 9008651cdfddc5747b003d2bdb6e2a9b, type: 3}
+  - {fileID: 21300000, guid: 60d7fa1c3a2dfce42b5acd28e4c49f40, type: 3}
+  - {fileID: 21300000, guid: f12550cee0107ac478f6100728231ef8, type: 3}
+  - {fileID: 21300000, guid: 30e2c6bf138caa9438c6704e96e502e5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bakuhatsu2
+  - danger
+  - Title
+  - GameOver
+  - penguin
+  - StartLogo
+  - warning 1
+  m_Tag: SpriteAtlas
+  m_IsVariant: 0
