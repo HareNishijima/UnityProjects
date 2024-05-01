@@ -5,7 +5,9 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     Rigidbody2D rb;
+
     public float speed;
+    public GameObject shotObj;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +18,19 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 moveVec = moveInput * speed;
 
-        Vector2 moveVec = input * speed * Time.deltaTime;
+        bool shotInput = Input.GetButtonDown("Fire1");
+        if(shotInput){
+            Shot();
+        }
 
-        rb.position=rb.position+moveVec;
+        rb.MovePosition(rb.position+moveVec*Time.fixedDeltaTime);
     }
 
+    void Shot(){
+        Instantiate(shotObj, rb.position+new Vector2(0.5f,0f), Quaternion.identity);
+    }
 
 }
