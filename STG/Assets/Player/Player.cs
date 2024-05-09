@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : Singleton<Controller>
+public class Player : Singleton<Player>
 {
     Rigidbody2D rb;
 

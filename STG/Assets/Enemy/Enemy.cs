@@ -29,7 +29,8 @@ public class Enemy : MonoBehaviour
         if (!isBack && rb.position.x < -5f)
         {
             isBack = true;
-            backVerticalDirection = Mathf.Abs(-1f);
+            Vector2 playerPos = Player.Instance.GetPlayerPos();
+            backVerticalDirection = Mathf.Sign(playerPos.y - rb.position.y);
         }
 
         Vector2 moveVec = Vector2.zero;
