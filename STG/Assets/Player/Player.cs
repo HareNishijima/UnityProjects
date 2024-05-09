@@ -35,4 +35,9 @@ public class Controller : Singleton<Controller>
         Instantiate(shotObj, rb.position + new Vector2(0.5f, 0f), Quaternion.identity);
     }
 
+    public Vector2 GetPlayerPos()
+    {
+        return rb.position;
+    }
+
 }
