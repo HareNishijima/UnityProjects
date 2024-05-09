@@ -15,6 +15,11 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    /// <summary>
+    /// 前進
+    /// 画面1/2まで移動したら斜め後ろ(45°)に移動
+    /// 横軸がプレイヤーと一致したら再び前進
+    /// </summary>
     void Update()
     {
 
