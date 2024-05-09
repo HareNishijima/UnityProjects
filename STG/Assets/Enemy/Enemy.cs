@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     Rigidbody2D rb;
     bool isBack;
+    float backVerticalDirection;
 
     public float speed;
 
@@ -28,12 +29,13 @@ public class Enemy : MonoBehaviour
         if (!isBack && rb.position.x < -5f)
         {
             isBack = true;
+            backVerticalDirection = Mathf.Abs(-1f);
         }
 
         Vector2 moveVec = Vector2.zero;
         if (isBack)
         {
-            moveVec = new Vector2(speed, speed);
+            moveVec = new Vector2(speed, speed * backVerticalDirection);
         }
         else
         {
