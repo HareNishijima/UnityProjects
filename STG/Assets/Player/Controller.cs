@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+public class Controller : Singleton<Controller>
 {
     Rigidbody2D rb;
 
@@ -22,15 +22,17 @@ public class Controller : MonoBehaviour
         Vector2 moveVec = moveInput * speed;
 
         bool shotInput = Input.GetButtonDown("Fire1");
-        if(shotInput){
+        if (shotInput)
+        {
             Shot();
         }
 
-        rb.MovePosition(rb.position+moveVec*Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
     }
 
-    void Shot(){
-        Instantiate(shotObj, rb.position+new Vector2(0.5f,0f), Quaternion.identity);
+    void Shot()
+    {
+        Instantiate(shotObj, rb.position + new Vector2(0.5f, 0f), Quaternion.identity);
     }
 
 }
