@@ -25,12 +25,21 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        if (rb.position.x < -5f)
+        if (!isBack && rb.position.x < -5f)
         {
             isBack = true;
         }
 
-        Vector2 moveVec = new Vector2(-speed, 0f);
+        Vector2 moveVec = Vector2.zero;
+        if (isBack)
+        {
+            moveVec = new Vector2(speed, speed);
+        }
+        else
+        {
+            moveVec = new Vector2(-speed, 0f);
+        }
+
         rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
     }
 
