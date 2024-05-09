@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     Rigidbody2D rb;
+    bool isBack;
 
     public float speed;
 
@@ -13,15 +14,21 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        isBack = false;
     }
 
     /// <summary>
     /// 前進
-    /// 画面1/2まで移動したら斜め後ろ(45°)に移動
+    /// 画面2/3まで移動したら斜め後ろ(45°)に移動
     /// 横軸がプレイヤーと一致したら再び前進
     /// </summary>
     void Update()
     {
+
+        if (rb.position.x < -5f)
+        {
+            isBack = true;
+        }
 
         Vector2 moveVec = new Vector2(-speed, 0f);
         rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
