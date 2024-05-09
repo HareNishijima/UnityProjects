@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     bool isBack;
     float backVerticalDirection;
+    Vector2 moveVec;
 
     public float speed;
 
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         isBack = false;
         state = State.FirstForward;
+        moveVec = Vector2.zero;
     }
 
     /// <summary>
@@ -28,24 +30,42 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
+        switch (state)
+        {
+            case State.FirstForward:
+                FirstForward();
+                break;
+            case State.Back:
+                Back();
+                break;
+            case State.LastForward:
+                LastForward();
+                break;
+        }
+
+        rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
+    }
+
+    void FirstForward()
+    {
         if (!isBack && rb.position.x < -5f)
         {
-            isBack = true;
+            state = State.Back;
             Vector2 playerPos = Player.Instance.GetPlayerPos();
             backVerticalDirection = Mathf.Sign(playerPos.y - rb.position.y);
         }
 
-        Vector2 moveVec = Vector2.zero;
-        if (isBack)
-        {
-            moveVec = new Vector2(speed, speed * backVerticalDirection);
-        }
-        else
-        {
-            moveVec = new Vector2(-speed, 0f);
-        }
+        moveVec = new Vector2(-speed, 0f);
+    }
 
-        rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
+    void Back()
+    {
+        moveVec = new Vector2(speed, speed * backVerticalDirection);
+    }
+
+    void LastForward()
+    {
+        moveVec = new Vector2(-speed, 0f);
     }
 
     void OnCollisionEnter2D(Collision2D other)
