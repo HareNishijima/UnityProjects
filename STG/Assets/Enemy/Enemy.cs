@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Shot")
         {
             Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 }
