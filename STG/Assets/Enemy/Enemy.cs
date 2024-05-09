@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        isBack = false;
         state = State.FirstForward;
         moveVec = Vector2.zero;
     }
@@ -49,9 +48,10 @@ public class Enemy : MonoBehaviour
     {
         if (rb.position.x < -5f)
         {
-            state = State.Back;
             Vector2 playerPos = Player.Instance.GetPlayerPos();
             backVerticalDirection = Mathf.Sign(playerPos.y - rb.position.y);
+            state = State.Back;
+            return;
         }
 
         moveVec = new Vector2(-speed, 0f);
@@ -59,6 +59,16 @@ public class Enemy : MonoBehaviour
 
     void Back()
     {
+        Vector2 playerPos = Player.Instance.GetPlayerPos();
+        float diff = Mathf.Abs(playerPos.y - rb.position.y);
+
+        if (diff < 0.1f)
+        {
+            rb.MovePosition(new Vector2(rb.position.x, playerPos.y));
+            state = State.LastForward;
+            return;
+        }
+
         moveVec = new Vector2(speed, speed * backVerticalDirection);
     }
 
