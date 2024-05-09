@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    enum State { FirstForward, Back, LastForward }
+    State state;
     Rigidbody2D rb;
     bool isBack;
     float backVerticalDirection;
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         isBack = false;
+        state = State.FirstForward;
     }
 
     /// <summary>
