@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     enum State { FirstForward, Back, LastForward }
     State state;
     Rigidbody2D rb;
-    bool isBack;
     float backVerticalDirection;
     Vector2 moveVec;
 
@@ -48,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     void FirstForward()
     {
-        if (!isBack && rb.position.x < -5f)
+        if (rb.position.x < -5f)
         {
             state = State.Back;
             Vector2 playerPos = Player.Instance.GetPlayerPos();
