@@ -55,6 +55,7 @@ public class EnemyLeader : MonoBehaviour
             Vector2 playerPos = Player.Instance.GetPlayerPos();
             backVerticalDirection = Mathf.Sign(playerPos.y - rb.position.y);
             state = State.Back;
+            moveVec = Vector2.zero;
             return;
         }
 
@@ -65,10 +66,13 @@ public class EnemyLeader : MonoBehaviour
     void Back()
     {
         Vector2 playerPos = Player.Instance.GetPlayerPos();
-        bool check=false;
-        if(backVerticalDirection < 0f){
+        bool check = false;
+        if (backVerticalDirection < 0f)
+        {
             check = (rb.position.y <= playerPos.y);
-        }else{
+        }
+        else
+        {
             check = (rb.position.y >= playerPos.y);
         }
 
@@ -77,6 +81,7 @@ public class EnemyLeader : MonoBehaviour
             rb.MovePosition(new Vector2(rb.position.x, playerPos.y));
             lastForwardStartPos = rb.position;
             state = State.LastForward;
+            moveVec = Vector2.zero;
             return;
         }
 
