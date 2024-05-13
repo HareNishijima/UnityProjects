@@ -4,21 +4,75 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
+    enum State { FirstForward, Back, LastForward }
+    State state;
+    Rigidbody2D rb;
+    float backVerticalDirection;
+    Vector2 moveVec;
+    Vector2 backStartPos;
+    Vector2 lastForwardStartPos;
 
     public EnemyLeader enemyLeader;
-    Rigidbody2D rb;
+    float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyLeader = GetComponent<EnemyLeader>();
         rb = GetComponent<Rigidbody2D>();
+        state = State.FirstForward;
+        moveVec = Vector2.zero;
+        speed = enemyLeader.GetSpeed();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        rb.MovePosition(rb.position);
+
+        switch (state)
+        {
+            case State.FirstForward:
+                FirstForward();
+                break;
+            case State.Back:
+                Back();
+                break;
+            case State.LastForward:
+                LastForward();
+                break;
+        }
+
+        rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
+    }
+
+    void FirstForward()
+    {
+        if (rb.position.x < enemyLeader.GetBackStartPos().x)
+        {
+            rb.MovePosition(enemyLeader.GetBackStartPos());
+            backVerticalDirection = enemyLeader.GetBackVerticalDirection();
+            state = State.Back;
+            backStartPos = rb.position;
+            return;
+        }
+
+        moveVec = new Vector2(-speed, 0f);
+    }
+
+    void Back()
+    {
+        if (rb.position.x > enemyLeader.GetLastForwardStartPos().x)
+        {
+            rb.MovePosition(enemyLeader.GetLastForwardStartPos());
+            state = State.LastForward;
+            lastForwardStartPos = rb.position;
+            return;
+        }
+
+        moveVec = new Vector2(speed, speed * backVerticalDirection);
+    }
+
+    void LastForward()
+    {
+        moveVec = new Vector2(-speed, 0f);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -28,5 +82,15 @@ public class EnemyFollow : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
+    }
+
+    public Vector2 GetBackStartPos()
+    {
+        return backStartPos;
+    }
+
+    public Vector2 GetLastForwardStartPos()
+    {
+        return lastForwardStartPos;
     }
 }
