@@ -9,11 +9,9 @@ public class EnemyFollow : MonoBehaviour
     Rigidbody2D rb;
     float backVerticalDirection;
     Vector2 moveVec;
-    Vector2 backStartPos;
-    Vector2 lastForwardStartPos;
+    float speed;
 
     public EnemyLeader enemyLeader;
-    float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +48,6 @@ public class EnemyFollow : MonoBehaviour
             rb.MovePosition(enemyLeader.GetBackStartPos());
             backVerticalDirection = enemyLeader.GetBackVerticalDirection();
             state = State.Back;
-            backStartPos = rb.position;
             return;
         }
 
@@ -63,7 +60,6 @@ public class EnemyFollow : MonoBehaviour
         {
             rb.MovePosition(enemyLeader.GetLastForwardStartPos());
             state = State.LastForward;
-            lastForwardStartPos = rb.position;
             return;
         }
 
@@ -82,15 +78,5 @@ public class EnemyFollow : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
-    }
-
-    public Vector2 GetBackStartPos()
-    {
-        return backStartPos;
-    }
-
-    public Vector2 GetLastForwardStartPos()
-    {
-        return lastForwardStartPos;
     }
 }
