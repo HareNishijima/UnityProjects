@@ -69,7 +69,7 @@ public class EnemyLeader : MonoBehaviour
         {
             rb.MovePosition(new Vector2(rb.position.x, playerPos.y));
             state = State.LastForward;
-            lastForwardStartPos = rb.pos;
+            lastForwardStartPos = rb.position;
             return;
         }
 
@@ -90,13 +90,23 @@ public class EnemyLeader : MonoBehaviour
         }
     }
 
-    public Vector2 BackStartPos()
+    public Vector2 GetBackStartPos()
     {
         return backStartPos;
     }
 
-    public Vector2 lastForwardStartPos()
+    public Vector2 GetLastForwardStartPos()
     {
         return lastForwardStartPos;
+    }
+
+    public float GetBackVerticalDirection()
+    {
+        return backVerticalDirection;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
     }
 }
