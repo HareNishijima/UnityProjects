@@ -53,10 +53,10 @@ public class EnemyLeader : MonoBehaviour
             Vector2 playerPos = Player.Instance.GetPlayerPos();
             backVerticalDirection = Mathf.Sign(playerPos.y - rb.position.y);
             state = State.Back;
-            backStartPos = rb.position;
             return;
         }
 
+        backStartPos = rb.position;
         moveVec = new Vector2(-speed, 0f);
     }
 
@@ -68,11 +68,12 @@ public class EnemyLeader : MonoBehaviour
         if (diff < 0.1f)
         {
             rb.MovePosition(new Vector2(rb.position.x, playerPos.y));
-            state = State.LastForward;
             lastForwardStartPos = rb.position;
+            state = State.LastForward;
             return;
         }
 
+        lastForwardStartPos = rb.position;
         moveVec = new Vector2(speed, speed * backVerticalDirection);
     }
 
