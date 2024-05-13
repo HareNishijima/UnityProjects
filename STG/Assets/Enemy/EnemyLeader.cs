@@ -65,9 +65,14 @@ public class EnemyLeader : MonoBehaviour
     void Back()
     {
         Vector2 playerPos = Player.Instance.GetPlayerPos();
-        float diff = Mathf.Abs(playerPos.y - rb.position.y);
+        bool check=false;
+        if(backVerticalDirection < 0f){
+            check = (rb.position.y <= playerPos.y);
+        }else{
+            check = (rb.position.y >= playerPos.y);
+        }
 
-        if (diff < 0.1f)
+        if (check)
         {
             rb.MovePosition(new Vector2(rb.position.x, playerPos.y));
             lastForwardStartPos = rb.position;
