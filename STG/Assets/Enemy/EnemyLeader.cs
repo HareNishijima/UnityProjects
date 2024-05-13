@@ -9,6 +9,8 @@ public class EnemyLeader : MonoBehaviour
     Rigidbody2D rb;
     float backVerticalDirection;
     Vector2 moveVec;
+    Vector2 backStartPos;
+    Vector2 lastForwardStartPos;
 
     public float speed;
 
@@ -51,6 +53,7 @@ public class EnemyLeader : MonoBehaviour
             Vector2 playerPos = Player.Instance.GetPlayerPos();
             backVerticalDirection = Mathf.Sign(playerPos.y - rb.position.y);
             state = State.Back;
+            backStartPos = rb.position;
             return;
         }
 
@@ -66,6 +69,7 @@ public class EnemyLeader : MonoBehaviour
         {
             rb.MovePosition(new Vector2(rb.position.x, playerPos.y));
             state = State.LastForward;
+            lastForwardStartPos = rb.pos;
             return;
         }
 
@@ -86,8 +90,13 @@ public class EnemyLeader : MonoBehaviour
         }
     }
 
-    public Vector2 GetPosition()
+    public Vector2 BackStartPos()
     {
-        return rb.position;
+        return backStartPos;
+    }
+
+    public Vector2 lastForwardStartPos()
+    {
+        return lastForwardStartPos;
     }
 }
