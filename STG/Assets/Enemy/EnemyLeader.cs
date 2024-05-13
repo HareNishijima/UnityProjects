@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyLeader : MonoBehaviour
 {
     enum State { FirstForward, Back, LastForward }
     State state;
