@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class DestroyWall : MonoBehaviour
 {
-    void OnCollisionEnter2D(Collision2D col) {
-        Destroy(col.gameObject);
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Shot")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
