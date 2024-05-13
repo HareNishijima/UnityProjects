@@ -85,4 +85,9 @@ public class EnemyLeader : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    public Vector2 GetPosition()
+    {
+        return rb.position;
+    }
 }
