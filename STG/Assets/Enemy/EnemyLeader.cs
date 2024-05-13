@@ -11,6 +11,7 @@ public class EnemyLeader : MonoBehaviour
     float backVerticalDirection;
     Vector2 moveVec;
     Vector2[] pastPosList;
+    int pastPosListIndex;
 
     public float speed;
 
@@ -22,6 +23,7 @@ public class EnemyLeader : MonoBehaviour
         moveVec = Vector2.zero;
         pastPosList = new Vector2[10];
         pastPosList = Enumerable.Repeat(rb.position, 10).ToArray();
+        pastPosListIndex = 0;
     }
 
     /// <summary>
@@ -29,7 +31,7 @@ public class EnemyLeader : MonoBehaviour
     /// 画面2/3まで移動したら斜め後ろ(45°)に移動
     /// 横軸がプレイヤーと一致したら再び前進
     /// </summary>
-    void Update()
+    void FixedUpdate()
     {
 
         switch (state)
@@ -44,6 +46,9 @@ public class EnemyLeader : MonoBehaviour
                 LastForward();
                 break;
         }
+
+        pastPosList[pastPosListIndex] = rb.position;
+        pastPosListIndex = (pastPosListIndex + 1) % pastPosList.Length;
 
         rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
     }
@@ -96,5 +101,11 @@ public class EnemyLeader : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
+    }
+
+    public Vector2 GetPastPos()
+    {
+        int index = (pastPosListIndex + pastPosList.Length) % pastPosList.Length;
+        return pastPosList[index];
     }
 }
