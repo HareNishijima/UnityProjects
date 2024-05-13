@@ -20,6 +20,8 @@ public class EnemyLeader : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         state = State.FirstForward;
         moveVec = Vector2.zero;
+        backStartPos = Vector2.zero;
+        lastForwardStartPos = Vector2.zero;
     }
 
     /// <summary>
