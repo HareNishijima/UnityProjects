@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyLeader : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemyLeader : MonoBehaviour
     Rigidbody2D rb;
     float backVerticalDirection;
     Vector2 moveVec;
+    Vector2[] pastPosList;
 
     public float speed;
 
@@ -18,6 +20,8 @@ public class EnemyLeader : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         state = State.FirstForward;
         moveVec = Vector2.zero;
+        pastPosList = new Vector2[10];
+        pastPosList = Enumerable.Repeat(rb.position, 10).ToArray();
     }
 
     /// <summary>
