@@ -24,14 +24,8 @@ public class EnemyLeader : MonoBehaviour
         enemyGetPos = GetComponent<EnemyGetPos>();
     }
 
-    /// <summary>
-    /// 前進
-    /// 画面2/3まで移動したら斜め後ろ(45°)に移動
-    /// 横軸がプレイヤーと一致したら再び前進
-    /// </summary>
     void FixedUpdate()
     {
-
         switch (state)
         {
             case State.FirstForward:

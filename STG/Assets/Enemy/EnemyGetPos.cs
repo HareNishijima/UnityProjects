@@ -13,7 +13,7 @@ public class EnemyGetPos : MonoBehaviour
     public int pastPosListSize;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         pastPosList = new Vector2[pastPosListSize];
