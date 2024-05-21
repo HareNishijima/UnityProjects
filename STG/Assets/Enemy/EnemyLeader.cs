@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using System;
 
 public class EnemyLeader : MonoBehaviour
 {
@@ -11,10 +9,11 @@ public class EnemyLeader : MonoBehaviour
     Rigidbody2D rb;
     float backVerticalDirection;
     Vector2 moveVec;
-    Vector2[] pastPosList;
+    EnemyGetPos enemyGetPos;
+
 
     public float speed;
-    public int pastPosListSize;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +21,7 @@ public class EnemyLeader : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         state = State.FirstForward;
         moveVec = Vector2.zero;
-        pastPosList = new Vector2[pastPosListSize];
-        pastPosList = Enumerable.Repeat(rb.position, pastPosListSize).ToArray();
+        enemyGetPos = GetComponent<EnemyGetPos>();
     }
 
     /// <summary>
@@ -47,11 +45,7 @@ public class EnemyLeader : MonoBehaviour
                 break;
         }
 
-        // 配列の要素を1つ右シフト
-        Array.Copy(pastPosList, 0, pastPosList, 1, pastPosListSize - 1);
-        // 配列の先頭に現在の座標を設定
-        pastPosList[0] = rb.position;
-
+        enemyGetPos.ShiftPastPosList();
         rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
     }
 
@@ -103,10 +97,5 @@ public class EnemyLeader : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
-    }
-
-    public Vector2 GetPastPos()
-    {
-        return pastPosList[pastPosListSize - 1];
     }
 }
