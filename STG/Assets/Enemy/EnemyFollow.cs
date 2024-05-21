@@ -5,15 +5,16 @@ using UnityEngine;
 public class EnemyFollow : MonoBehaviour
 {
     Rigidbody2D rb;
-    public EnemyLeader enemyLeader;
+    public EnemyGetPos enemyGetPos;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        rb.position = enemyLeader.GetPastPos();
+        enemyGetPos.ShiftPastPosList();
+        rb.MovePosition(enemyGetPos.GetPastPos());
     }
 }
