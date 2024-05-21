@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class EnemyLeader : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class EnemyLeader : MonoBehaviour
     float backVerticalDirection;
     Vector2 moveVec;
     Vector2[] pastPosList;
-    int pastPosListIndex;
 
     public float speed;
+    public int pastPosListSize;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,8 @@ public class EnemyLeader : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         state = State.FirstForward;
         moveVec = Vector2.zero;
-        pastPosList = new Vector2[10];
-        pastPosList = Enumerable.Repeat(rb.position, 10).ToArray();
-        pastPosListIndex = 0;
+        pastPosList = new Vector2[pastPosListSize];
+        pastPosList = Enumerable.Repeat(rb.position, pastPosListSize).ToArray();
     }
 
     /// <summary>
@@ -47,8 +47,10 @@ public class EnemyLeader : MonoBehaviour
                 break;
         }
 
-        pastPosList[pastPosListIndex] = rb.position;
-        pastPosListIndex = (pastPosListIndex + 1) % pastPosList.Length;
+        // 配列の要素を1つ右シフト
+        Array.Copy(pastPosList, 0, pastPosList, 1, pastPosListSize - 1);
+        // 配列の先頭に現在の座標を設定
+        pastPosList[0] = rb.position;
 
         rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
     }
@@ -105,7 +107,6 @@ public class EnemyLeader : MonoBehaviour
 
     public Vector2 GetPastPos()
     {
-        int index = (pastPosListIndex + pastPosList.Length) % pastPosList.Length;
-        return pastPosList[index];
+        return pastPosList[pastPosListSize - 1];
     }
 }

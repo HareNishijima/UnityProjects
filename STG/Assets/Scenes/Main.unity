@@ -740,6 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  pastPosListSize: 10
 --- !u!212 &1862768718
 SpriteRenderer:
   m_ObjectHideFlags: 0
