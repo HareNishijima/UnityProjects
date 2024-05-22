@@ -12,10 +12,12 @@ public class EnemyGuide : MonoBehaviour
     float backVerticalDirection;
     Vector2 moveVec;
     Vector2[] pastPosList;
+    GameObject[] enemyList;
 
     public float speed;
-    public GameObject[] enemyList;
+    public int enemyNum;
     public int enemySpaceSize;
+    public GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,12 @@ public class EnemyGuide : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         state = State.FirstForward;
         moveVec = Vector2.zero;
-        pastPosList = new Vector2[enemyList.Length * enemySpaceSize];
+        enemyList = new GameObject[enemyNum];
+        for (int i = 0; i < enemyNum; i++)
+        {
+            enemyList[i] = Instantiate(enemy);
+        }
+        pastPosList = new Vector2[enemyNum * enemySpaceSize];
         pastPosList = Enumerable.Repeat(rb.position, pastPosList.Length).ToArray();
     }
 
