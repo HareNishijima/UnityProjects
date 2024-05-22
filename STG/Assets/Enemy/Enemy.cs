@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Shot")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             Destroy(other.gameObject);
         }
     }
