@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class EnemyGuide : MonoBehaviour
+public class MirrorZMoveEnemyGuide : MonoBehaviour
 {
     enum State { FirstForward, Back, LastForward, Stop }
     State state;
