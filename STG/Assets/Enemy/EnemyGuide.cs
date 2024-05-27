@@ -49,11 +49,10 @@ public class EnemyGuide : MonoBehaviour
                 break;
         }
 
-        int idx = 0;
-        foreach (GameObject enemy in enemyList)
+        for (int i = 0; i < enemyNum; i++)
         {
-            enemy.transform.position = pastPosList[idx * (enemySpaceSize - 1)];
-            idx++;
+            if (enemyList[i] == null) continue;
+            enemyList[i].transform.position = pastPosList[i * (enemySpaceSize - 1)];
         }
 
         rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
