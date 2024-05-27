@@ -112,7 +112,16 @@ public class EnemyGuide : MonoBehaviour
 
     void Stop()
     {
-
+        // 最後の隊列がx<-20fの座標になったら全Enemyが画面外に出たという事なのですべて削除する
+        if (pastPosList[pastPosList.Length - 1].x < -20f)
+        {
+            for (int i = 0; i < enemyNum; i++)
+            {
+                if (enemyList[i] == null) continue;
+                Destroy(enemyList[i]);
+            }
+            Destroy(gameObject);
+        }
     }
 
     void ShiftPastPosList()
