@@ -6,7 +6,7 @@ using System;
 
 public class EnemyGuide : MonoBehaviour
 {
-    enum State { FirstForward, Back, LastForward }
+    enum State { FirstForward, Back, LastForward, Stop }
     State state;
     Rigidbody2D rb;
     float backVerticalDirection;
@@ -46,6 +46,9 @@ public class EnemyGuide : MonoBehaviour
                 break;
             case State.LastForward:
                 LastForward();
+                break;
+            case State.Stop:
+                Stop();
                 break;
         }
 
@@ -98,6 +101,18 @@ public class EnemyGuide : MonoBehaviour
     void LastForward()
     {
         moveVec = new Vector2(-speed, 0f);
+
+        if (rb.position.x < -20f)
+        {
+            state = State.Stop;
+            moveVec = Vector2.zero;
+            return;
+        }
+    }
+
+    void Stop()
+    {
+
     }
 
     void ShiftPastPosList()
