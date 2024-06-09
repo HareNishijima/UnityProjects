@@ -16,7 +16,7 @@ public class EnemyShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 moveVec = new Vector2(speed, 0f);
-        rb.MovePosition(rb.position - moveVec * Time.fixedDeltaTime);
+        Vector2 moveVec = new Vector2(-transform.right.x, -transform.right.y) * speed;
+        rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
     }
 }
