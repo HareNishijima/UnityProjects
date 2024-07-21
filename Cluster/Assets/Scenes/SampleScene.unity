@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 78625316}
   - component: {fileID: 78625315}
   m_Layer: 0
-  m_Name: Switch
+  m_Name: RainSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,14 +434,14 @@ MonoBehaviour:
   globalGimmickKey:
     key:
       target: 2
-      key: Switch
+      key: rainSwitch
     item: {fileID: 0}
   logic:
     statements:
     - singleStatement:
         targetState:
           target: 2
-          key: Toggle
+          key: rainToggle
           parameterType: 1
         expression:
           type: 1
@@ -473,7 +473,7 @@ MonoBehaviour:
                   vector3Value: {x: 0, y: 0, z: 0}
                 sourceState:
                   target: 2
-                  key: Toggle
+                  key: rainToggle
                   type: 6
               operatorExpression:
                 operator: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
     - singleStatement:
         targetState:
           target: 2
-          key: isOn
+          key: rainActive
           parameterType: 1
         expression:
           type: 1
@@ -513,7 +513,7 @@ MonoBehaviour:
                   vector3Value: {x: 0, y: 0, z: 0}
                 sourceState:
                   target: 2
-                  key: Toggle
+                  key: rainToggle
                   type: 1
               operatorExpression:
                 operator: 0
@@ -524,63 +524,6 @@ MonoBehaviour:
                 constant:
                   type: 1
                   boolValue: 1
-                  floatValue: 0
-                  integerValue: 0
-                  vector2Value: {x: 0, y: 0}
-                  vector3Value: {x: 0, y: 0, z: 0}
-                sourceState:
-                  target: 2
-                  key: Toggle
-                  type: 6
-              operatorExpression:
-                operator: 0
-                operands: []
-    - singleStatement:
-        targetState:
-          target: 2
-          key: isOff
-          parameterType: 1
-        expression:
-          type: 1
-          value:
-            type: 1
-            constant:
-              type: 1
-              boolValue: 0
-              floatValue: 0
-              integerValue: 0
-              vector2Value: {x: 0, y: 0}
-              vector3Value: {x: 0, y: 0, z: 0}
-            sourceState:
-              target: 2
-              key: Toggle
-              type: 1
-          operatorExpression:
-            operator: 7
-            operands:
-            - type: 0
-              value:
-                type: 1
-                constant:
-                  type: 1
-                  boolValue: 0
-                  floatValue: 0
-                  integerValue: 0
-                  vector2Value: {x: 0, y: 0}
-                  vector3Value: {x: 0, y: 0, z: 0}
-                sourceState:
-                  target: 2
-                  key: Toggle
-                  type: 1
-              operatorExpression:
-                operator: 0
-                operands: []
-            - type: 0
-              value:
-                type: 0
-                constant:
-                  type: 1
-                  boolValue: 0
                   floatValue: 0
                   integerValue: 0
                   vector2Value: {x: 0, y: 0}
@@ -742,6 +685,7 @@ GameObject:
   - component: {fileID: 896632703}
   - component: {fileID: 896632702}
   - component: {fileID: 896632701}
+  - component: {fileID: 896632704}
   m_Layer: 0
   m_Name: Switch (1)
   m_TagString: Untagged
@@ -829,6 +773,122 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896632699}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &896632704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896632699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67bdc2960f9462385a7fba1c0052836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalGimmickKey:
+    key:
+      target: 2
+      key: spotLightSwitch
+    item: {fileID: 0}
+  logic:
+    statements:
+    - singleStatement:
+        targetState:
+          target: 2
+          key: stopLightToggle
+          parameterType: 1
+        expression:
+          type: 1
+          value:
+            type: 1
+            constant:
+              type: 1
+              boolValue: 0
+              floatValue: 0
+              integerValue: 0
+              vector2Value: {x: 0, y: 0}
+              vector3Value: {x: 0, y: 0, z: 0}
+            sourceState:
+              target: 2
+              key: StopLightToggle
+              type: 1
+          operatorExpression:
+            operator: 0
+            operands:
+            - type: 0
+              value:
+                type: 1
+                constant:
+                  type: 1
+                  boolValue: 0
+                  floatValue: 0
+                  integerValue: 0
+                  vector2Value: {x: 0, y: 0}
+                  vector3Value: {x: 0, y: 0, z: 0}
+                sourceState:
+                  target: 2
+                  key: stopLightToggle
+                  type: 1
+              operatorExpression:
+                operator: 0
+                operands: []
+    - singleStatement:
+        targetState:
+          target: 2
+          key: stopLightActive
+          parameterType: 1
+        expression:
+          type: 1
+          value:
+            type: 0
+            constant:
+              type: 1
+              boolValue: 1
+              floatValue: 0
+              integerValue: 0
+              vector2Value: {x: 0, y: 0}
+              vector3Value: {x: 0, y: 0, z: 0}
+            sourceState:
+              target: 2
+              key: StopLightToggle
+              type: 1
+          operatorExpression:
+            operator: 7
+            operands:
+            - type: 0
+              value:
+                type: 1
+                constant:
+                  type: 1
+                  boolValue: 1
+                  floatValue: 0
+                  integerValue: 0
+                  vector2Value: {x: 0, y: 0}
+                  vector3Value: {x: 0, y: 0, z: 0}
+                sourceState:
+                  target: 2
+                  key: stopLightToggle
+                  type: 1
+              operatorExpression:
+                operator: 0
+                operands: []
+            - type: 0
+              value:
+                type: 0
+                constant:
+                  type: 1
+                  boolValue: 1
+                  floatValue: 0
+                  integerValue: 0
+                  vector2Value: {x: 0, y: 0}
+                  vector3Value: {x: 0, y: 0, z: 0}
+                sourceState:
+                  target: 2
+                  key: StopLightToggle
+                  type: 6
+              operatorExpression:
+                operator: 0
+                operands: []
 --- !u!1 &1060496684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1196,7 @@ MonoBehaviour:
   triggers:
   - target: 4
     specifiedTargetItem: {fileID: 1757260492}
-    key: Switch
+    key: rainSwitch
     type: 0
     value:
       boolValue: 0
@@ -6086,7 +6146,7 @@ MonoBehaviour:
   globalGimmickKey:
     key:
       target: 2
-      key: isOn
+      key: rainActive
     item: {fileID: 1757260492}
 --- !u!114 &1757260492
 MonoBehaviour:
@@ -6197,13 +6257,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1831291182}
   - component: {fileID: 1831291181}
+  - component: {fileID: 1831291184}
+  - component: {fileID: 1831291183}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1831291181
 Light:
   m_ObjectHideFlags: 0
@@ -6281,6 +6343,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1831291183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831291180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3977a5e65e72f4db4b85ddba10d48dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id:
+    value: 0
+  itemName: 
+  size: {x: 0, y: 0, z: 0}
+--- !u!114 &1831291184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831291180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2b9f4eb5444df69e31db5c54e12447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalGimmickKey:
+    key:
+      target: 2
+      key: stopLightActive
+    item: {fileID: 0}
 --- !u!1 &1834491999
 GameObject:
   m_ObjectHideFlags: 0
@@ -6291,6 +6386,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1834492000}
   - component: {fileID: 1834492001}
+  - component: {fileID: 1834492003}
+  - component: {fileID: 1834492002}
   m_Layer: 14
   m_Name: SwitchTrigger
   m_TagString: Untagged
@@ -6327,6 +6424,48 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1834492002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834491999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba507dbcf46b94a9895daa4d46e12805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 1834492003}
+  collisionEventType: 0
+  collisionType: -1
+  triggers:
+  - target: 4
+    specifiedTargetItem: {fileID: 0}
+    key: spotLightSwitch
+    type: 0
+    value:
+      boolValue: 0
+      floatValue: 0
+      integerValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+--- !u!114 &1834492003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834491999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3977a5e65e72f4db4b85ddba10d48dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id:
+    value: 0
+  itemName: 
+  size: {x: 0, y: 0, z: 0}
 --- !u!1 &1884310894
 GameObject:
   m_ObjectHideFlags: 0
@@ -6471,7 +6610,7 @@ GameObject:
   - component: {fileID: 1979291449}
   - component: {fileID: 1979291448}
   m_Layer: 0
-  m_Name: Switch (1)
+  m_Name: SpotLightSwitch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
