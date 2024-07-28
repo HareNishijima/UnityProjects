@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
         position += input * speed * Time.deltaTime;
 
         float rotate = transform.rotation.z;
-        rotate = Input.GetAxis("Vertical") - Input.GetAxis("Horizontal");
+        rotate = Input.GetAxis("Vertical");
+        if(rotate == 0f) rotate = -Input.GetAxis("Horizontal");
         quaternion = Quaternion.AngleAxis(rotate * 45f, Vector3.forward);
     }
 
