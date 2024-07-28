@@ -8,11 +8,18 @@ public class PlayerController : MonoBehaviour
     Vector2 position;
     Rigidbody2D rigidbody2d;
 
+    public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
         position = new Vector2(0f,0f);
         rigidbody2d = GetComponent<Rigidbody2D>();
+    }
+
+    void Update(){
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
+        position += input * speed * Time.deltaTime;
     }
 
     // Update is called once per frame
