@@ -2,37 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PlayerTransform {
+    public Vector2 position;
+    public Quaternion quaternion;
+    float speed=10f;
+
+    public PlayerTransform(Vector2 p, Quaternion q){
+        position = p;
+        quaternion = q;
+    }
+
+    public PlayerTransform Controller(Vector2 input){
+        Vector2 newPosition = input * speed * Time.deltaTime + position;
+
+        float r = -input.x;
+        if(r == 0f) r = input.y;
+        Quaternion qua = Quaternion.Euler(0f, 0f, r * 45f);
+
+        return new PlayerTransform(newPosition, qua);
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
-
-    Vector2 position;
-    Quaternion quaternion;
+    PlayerTransform playerTransform;
     Rigidbody2D rigidbody2d;
 
-    public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        position = new Vector2(0f,0f);
-        quaternion = Quaternion.identity;
+        playerTransform = new PlayerTransform(transform.position, transform.rotation);
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update(){
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
-        position += input * speed * Time.deltaTime;
 
-        float rotate = transform.rotation.z;
-        rotate = Input.GetAxis("Vertical");
-        if(rotate == 0f) rotate = -Input.GetAxis("Horizontal");
-        quaternion = Quaternion.AngleAxis(rotate * 45f, Vector3.forward);
+        playerTransform = playerTransform.Controller(input);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rigidbody2d.position = position;
-        transform.rotation = quaternion;
+        rigidbody2d.position = playerTransform.position;
+        transform.rotation = playerTransform.quaternion;
     }
 }
