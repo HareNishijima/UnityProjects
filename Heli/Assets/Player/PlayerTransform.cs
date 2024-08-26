@@ -3,7 +3,7 @@ using UnityEngine;
 class PlayerTransform {
     public Vector2 position;
     public Quaternion quaternion;
-    float speed=10f;
+    float speed= 10f;
 
     public PlayerTransform(Vector2 p, Quaternion q){
         position = p;
@@ -11,7 +11,9 @@ class PlayerTransform {
     }
 
     public PlayerTransform Controller(Vector2 input){
-        Vector2 newPosition = input * speed * Time.deltaTime + position;
+        // 入力値から移動するベクトルを計算し、新しい座標を更新
+        Vector2 moveVec = input * speed;
+        Vector2 newPosition = moveVec * Time.deltaTime + position;
 
         float r = -input.x;
         if(r == 0f) r = input.y;
