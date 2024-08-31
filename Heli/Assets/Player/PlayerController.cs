@@ -5,18 +5,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     PlayerTransform playerTransform;
+    Controller controller;
     Rigidbody2D rigidbody2d;
 
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = new PlayerTransform(transform.position, transform.rotation);
+        controller = new Controller();
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 input = controller.MoveInput();
 
         playerTransform = playerTransform.Controller(input);
     }
