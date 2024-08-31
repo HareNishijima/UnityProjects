@@ -6,7 +6,8 @@ class PlayerTransform : MonoBehaviour
 {
     Controller controller;
     PlayerController playerController;
-    Transform newTransform;
+    Vector3 newPosition;
+    Quaternion newQuaternion;
 
     // Start is called before the first frame update
     void Start()
@@ -19,17 +20,14 @@ class PlayerTransform : MonoBehaviour
     {
         Vector2 moveInput = controller.MoveInput();
 
-        Vector2 newPosition = playerController.NewPosition(moveInput, transform.position);
-        Quaternion newQuaternion = playerController.NewQuaternion(moveInput, transform.rotation);
-
-        newTransform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
-        newTransform.rotation = newQuaternion;
+        newPosition = playerController.NewPosition(moveInput, transform.position);
+        newQuaternion = playerController.NewQuaternion(moveInput, transform.rotation);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = newTransform.position;
-        transform.rotation = newTransform.rotation;
+        transform.position = newPosition;
+        transform.rotation = newQuaternion;
     }
 }

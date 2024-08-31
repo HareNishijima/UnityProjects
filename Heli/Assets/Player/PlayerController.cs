@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController
 {
     public Vector2 position;
     public Quaternion quaternion;
-    float speed = 10f;
 
-    public Vector2 NewPosition(Vector2 input, Vector3 current)
+    public Vector3 NewPosition(Vector2 input, Vector3 current)
     {
-        return Vector2.zero;
+        float moveSpeed = 10f;
+
+        Vector2 moveVector = input * moveSpeed;
+        Vector3 movePosition = new Vector3(moveVector.x, moveVector.y, 0f) * Time.deltaTime;
+        Vector3 newPosition = movePosition + current;
+
+        return newPosition;
     }
 
     public Quaternion NewQuaternion(Vector2 input, Quaternion current)
@@ -21,9 +27,7 @@ public class PlayerController
     // ここの処理をNewPositionとNewQuaternionに移す
     void Logic(Vector2 input)
     {
-        // 入力値から移動するベクトルを計算し、新しい座標を更新
-        Vector2 moveVec = input * speed;
-        Vector2 newPosition = moveVec * Time.deltaTime + position;
+
 
         float angleZ = quaternion.eulerAngles.z;
         if (angleZ > 180f) angleZ -= 360f;
