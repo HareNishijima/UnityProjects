@@ -8,12 +8,12 @@ public class PlayerController
     public Quaternion quaternion;
     float speed = 10f;
 
-    public Vector2 NewPosition(Vector2 input)
+    public Vector2 NewPosition(Vector2 input, Vector3 current)
     {
         return Vector2.zero;
     }
 
-    public Quaternion NewQuaternion(Vector2 input)
+    public Quaternion NewQuaternion(Vector2 input, Quaternion current)
     {
         return Quaternion.identity;
     }
