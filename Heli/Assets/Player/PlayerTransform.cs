@@ -23,17 +23,12 @@ class PlayerTransform
         float newAngleZ = angleZ;
         if (input.x != 0f)
         {
-            newAngleZ += -input.x;
+            newAngleZ = -input.x * 45f;
         }
         else if (input.y != 0f)
         {
-            newAngleZ += input.y;
+            newAngleZ = input.y * 45f;
         }
-        else
-        {
-            // newAngleZが徐々に0に近づく
-        }
-        newAngleZ = Mathf.Clamp(newAngleZ, -45f, 45f);
         Quaternion qua = Quaternion.Euler(0f, 0f, newAngleZ);
 
         return new PlayerTransform(newPosition, qua);
