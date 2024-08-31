@@ -1,9 +1,23 @@
+using System;
 using UnityEngine;
 
 public class Controller
 {
-    public Vector2 MoveInput()
+    Vector2 adjustedInput;
+    float speed;
+
+    public Controller()
     {
-        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        adjustedInput = Vector2.zero;
+        speed = 5f;
+    }
+    public Vector2 AdjustedInput()
+    {
+        Vector2 rawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        adjustedInput.x = Mathf.MoveTowards(adjustedInput.x, Math.Sign((int)rawInput.x), speed * Time.deltaTime);
+        adjustedInput.y = Mathf.MoveTowards(adjustedInput.y, Math.Sign((int)rawInput.y), speed * Time.deltaTime);
+
+        return adjustedInput;
     }
 }

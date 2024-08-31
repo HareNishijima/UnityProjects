@@ -20,7 +20,7 @@ class PlayerTransform : MonoBehaviour
 
     void Update()
     {
-        Vector2 moveInput = controller.MoveInput();
+        Vector2 moveInput = controller.AdjustedInput();
 
         newPosition = playerController.NewPosition(moveInput, rigidbody2d.position);
         newQuaternion = playerController.NewQuaternion(moveInput, transform.rotation);
