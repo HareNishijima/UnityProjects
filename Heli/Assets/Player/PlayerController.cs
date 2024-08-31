@@ -8,13 +8,13 @@ public class PlayerController
     public Vector2 position;
     public Quaternion quaternion;
 
-    public Vector3 NewPosition(Vector2 input, Vector3 current)
+    public Vector2 NewPosition(Vector2 input, Vector2 current)
     {
         float moveSpeed = 10f;
 
         Vector2 moveVector = input * moveSpeed;
-        Vector3 movePosition = new Vector3(moveVector.x, moveVector.y, 0f) * Time.deltaTime;
-        Vector3 newPosition = movePosition + current;
+        Vector2 movePosition = moveVector * Time.deltaTime;
+        Vector2 newPosition = movePosition + current;
 
         return newPosition;
     }

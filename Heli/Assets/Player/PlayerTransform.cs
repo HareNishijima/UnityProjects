@@ -6,28 +6,30 @@ class PlayerTransform : MonoBehaviour
 {
     Controller controller;
     PlayerController playerController;
-    Vector3 newPosition;
+    Vector2 newPosition;
     Quaternion newQuaternion;
+    Rigidbody2D rigidbody2d;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = new Controller();
         playerController = new PlayerController();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         Vector2 moveInput = controller.MoveInput();
 
-        newPosition = playerController.NewPosition(moveInput, transform.position);
+        newPosition = playerController.NewPosition(moveInput, rigidbody2d.position);
         newQuaternion = playerController.NewQuaternion(moveInput, transform.rotation);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = newPosition;
+        rigidbody2d.position = newPosition;
         transform.rotation = newQuaternion;
     }
 }
