@@ -1,41 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-class PlayerTransform
+class PlayerTransform : MonoBehaviour
 {
-    public Vector2 position;
-    public Quaternion quaternion;
-    float speed = 10f;
+    PlayerController playerController;
+    Controller controller;
+    Rigidbody2D rigidbody2d;
 
-    public PlayerTransform(Vector2 p, Quaternion q)
+    // Start is called before the first frame update
+    void Start()
     {
-        position = p;
-        quaternion = q;
+        playerController = new PlayerController(transform.position, transform.rotation);
+        controller = new Controller();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
-    public PlayerTransform Controller(Vector2 input)
+    void Update()
     {
-        // 入力値から移動するベクトルを計算し、新しい座標を更新
-        Vector2 moveVec = input * speed;
-        Vector2 newPosition = moveVec * Time.deltaTime + position;
+        Vector2 input = controller.MoveInput();
 
-        float angleZ = quaternion.eulerAngles.z;
-        if (angleZ > 180f) angleZ -= 360f;
-        float newAngleZ = angleZ;
-        if (input.x != 0f)
-        {
-            newAngleZ = -input.x * 45f;
-        }
-        else if (input.y != 0f)
-        {
-            newAngleZ = input.y * 45f;
-        }
-        Quaternion qua = Quaternion.Euler(0f, 0f, newAngleZ);
-
-        return new PlayerTransform(newPosition, qua);
+        playerController = playerController.Controller(input);
     }
 
-    float Mapping(float value, float inMin, float inMax, float outMin, float outMax)
+    // Update is called once per frame
+    void FixedUpdate()
     {
-        return Mathf.Lerp(outMin, outMax, Mathf.InverseLerp(inMin, inMax, value));
+        rigidbody2d.position = playerController.position;
+        transform.rotation = playerController.quaternion;
     }
 }

@@ -2,31 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController
 {
-    PlayerTransform playerTransform;
-    Controller controller;
-    Rigidbody2D rigidbody2d;
+    public Vector2 position;
+    public Quaternion quaternion;
+    float speed = 10f;
 
-    // Start is called before the first frame update
-    void Start()
+    public PlayerController(Vector2 p, Quaternion q)
     {
-        playerTransform = new PlayerTransform(transform.position, transform.rotation);
-        controller = new Controller();
-        rigidbody2d = GetComponent<Rigidbody2D>();
+        position = p;
+        quaternion = q;
     }
 
-    void Update()
+    public PlayerController Controller(Vector2 input)
     {
-        Vector2 input = controller.MoveInput();
+        // 入力値から移動するベクトルを計算し、新しい座標を更新
+        Vector2 moveVec = input * speed;
+        Vector2 newPosition = moveVec * Time.deltaTime + position;
 
-        playerTransform = playerTransform.Controller(input);
+        float angleZ = quaternion.eulerAngles.z;
+        if (angleZ > 180f) angleZ -= 360f;
+        float newAngleZ = angleZ;
+        if (input.x != 0f)
+        {
+            newAngleZ = -input.x * 45f;
+        }
+        else if (input.y != 0f)
+        {
+            newAngleZ = input.y * 45f;
+        }
+        Quaternion qua = Quaternion.Euler(0f, 0f, newAngleZ);
+
+        return new PlayerController(newPosition, qua);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    float Mapping(float value, float inMin, float inMax, float outMin, float outMax)
     {
-        rigidbody2d.position = playerTransform.position;
-        transform.rotation = playerTransform.quaternion;
+        return Mathf.Lerp(outMin, outMax, Mathf.InverseLerp(inMin, inMax, value));
     }
 }
