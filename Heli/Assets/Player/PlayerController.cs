@@ -13,7 +13,7 @@ public class PlayerController
         float moveSpeed = 10f;
 
         Vector2 moveVector = input * moveSpeed;
-        Vector2 movePosition = moveVector * Time.deltaTime;
+        Vector2 movePosition = moveVector * Time.fixedDeltaTime;
         Vector2 newPosition = movePosition + current;
 
         return newPosition;
