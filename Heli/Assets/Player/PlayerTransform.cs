@@ -19,7 +19,7 @@ class PlayerTransform
         Vector2 newPosition = moveVec * Time.deltaTime + position;
 
         float angleZ = quaternion.eulerAngles.z;
-        float newAngleZ = angleZ;
+        float newAngleZ = Mapping(angleZ, 0f, 360f, -180f, 180f);
         if (input.x != 0f)
         {
             newAngleZ += -input.x;
@@ -32,9 +32,13 @@ class PlayerTransform
         {
             // newAngleZが徐々に0に近づく
         }
-        Debug.Log(newAngleZ);
         Quaternion qua = Quaternion.Euler(0f, 0f, newAngleZ);
 
         return new PlayerTransform(newPosition, qua);
+    }
+
+    float Mapping(float value, float inMin, float inMax, float outMin, float outMax)
+    {
+        return Mathf.Lerp(outMin, outMax, Mathf.InverseLerp(inMin, inMax, value));
     }
 }
