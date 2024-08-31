@@ -19,7 +19,8 @@ class PlayerTransform
         Vector2 newPosition = moveVec * Time.deltaTime + position;
 
         float angleZ = quaternion.eulerAngles.z;
-        float newAngleZ = Mapping(angleZ, 0f, 360f, -180f, 180f);
+        if (angleZ > 180f) angleZ -= 360f;
+        float newAngleZ = angleZ;
         if (input.x != 0f)
         {
             newAngleZ += -input.x;
@@ -32,6 +33,7 @@ class PlayerTransform
         {
             // newAngleZが徐々に0に近づく
         }
+        newAngleZ = Mathf.Clamp(newAngleZ, -45f, 45f);
         Quaternion qua = Quaternion.Euler(0f, 0f, newAngleZ);
 
         return new PlayerTransform(newPosition, qua);
