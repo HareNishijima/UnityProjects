@@ -4,29 +4,31 @@ using UnityEngine;
 
 class PlayerTransform : MonoBehaviour
 {
-    PlayerController playerController;
     Controller controller;
+    PlayerController playerController;
+
     Rigidbody2D rigidbody2d;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerController = new PlayerController(transform.position, transform.rotation);
         controller = new Controller();
+        playerController = new PlayerController();
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        Vector2 input = controller.MoveInput();
+        Vector2 moveInput = controller.MoveInput();
 
-        playerController = playerController.Controller(input);
+        Vector2 newPosition = playerController.NewPosition(moveInput);
+        Quaternion newQuaternion = playerController.NewQuaternion(moveInput);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rigidbody2d.position = playerController.position;
-        transform.rotation = playerController.quaternion;
+        // rigidbody2d.position = 新しい座標
+        // transform.rotation = 新しいクォータニオン
     }
 }

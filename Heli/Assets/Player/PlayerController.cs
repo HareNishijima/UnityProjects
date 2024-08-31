@@ -8,13 +8,18 @@ public class PlayerController
     public Quaternion quaternion;
     float speed = 10f;
 
-    public PlayerController(Vector2 p, Quaternion q)
+    public Vector2 NewPosition(Vector2 input)
     {
-        position = p;
-        quaternion = q;
+        return Vector2.zero;
     }
 
-    public PlayerController Controller(Vector2 input)
+    public Quaternion NewQuaternion(Vector2 input)
+    {
+        return Quaternion.identity;
+    }
+
+    // ここの処理をNewPositionとNewQuaternionに移す
+    void Logic(Vector2 input)
     {
         // 入力値から移動するベクトルを計算し、新しい座標を更新
         Vector2 moveVec = input * speed;
@@ -32,8 +37,6 @@ public class PlayerController
             newAngleZ = input.y * 45f;
         }
         Quaternion qua = Quaternion.Euler(0f, 0f, newAngleZ);
-
-        return new PlayerController(newPosition, qua);
     }
 
     float Mapping(float value, float inMin, float inMax, float outMin, float outMax)
