@@ -20,10 +20,11 @@ class PlayerTransform : MonoBehaviour
 
     void Update()
     {
+        Vector2 rawInput = controller.RawInput();
         Vector2 moveInput = controller.AdjustedInput();
 
         newPosition = playerController.NewPosition(moveInput, rigidbody2d.position);
-        newQuaternion = playerController.NewQuaternion(moveInput, transform.rotation);
+        newQuaternion = playerController.NewQuaternion(rawInput, transform.rotation);
     }
 
     // Update is called once per frame
