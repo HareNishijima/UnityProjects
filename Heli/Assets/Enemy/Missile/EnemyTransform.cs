@@ -22,16 +22,22 @@ public class EnemyTransform : MonoBehaviour
         // プレイヤーに向かって直進
         if (playerObject)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, GetAngle(transform.position, playerObject.transform.position));
+            float angleZ = GetAngleToTarget(transform, playerObject.transform.position);
+            transform.rotation = Quaternion.Euler(0f, 0f, angleZ);
         }
 
         Vector2 moveVec = transform.right * moveSpeed;
         rigidbody2d.position += moveVec * Time.fixedDeltaTime;
     }
 
-    float GetAngle(Vector2 start, Vector2 target)
+    float GetAngleToTarget(Transform selfTransform, Vector2 targetPosition)
     {
-        Vector2 diff = target - start;
-        return Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        float deltaAngle = 1f;
+
+        Vector2 diffPosition = targetPosition - (Vector2)selfTransform.position;
+        float angleToTarget = Mathf.Atan2(diffPosition.y, diffPosition.x) * Mathf.Rad2Deg;
+        float adjustedAngleToTarget = Mathf.MoveTowardsAngle(selfTransform.eulerAngles.z, angleToTarget, deltaAngle);
+
+        return adjustedAngleToTarget;
     }
 }
