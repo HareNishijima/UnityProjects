@@ -24,4 +24,8 @@ public class Controller
 
         return adjustedInput;
     }
+    public bool Fire1Input()
+    {
+        return Input.GetButton("Fire1");
+    }
 }
