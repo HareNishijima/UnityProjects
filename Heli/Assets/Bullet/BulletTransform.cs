@@ -11,14 +11,14 @@ public class BulletTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = 30f;
+        moveSpeed = 40f;
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 moveVec = Vector2.right * moveSpeed;
+        Vector2 moveVec = transform.right * moveSpeed;
         rigidbody2d.position += moveVec * Time.fixedDeltaTime;
     }
 }

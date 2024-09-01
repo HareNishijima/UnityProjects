@@ -17,7 +17,7 @@ public class PlayerShot : MonoBehaviour
     {
         if (playerShotController.Shot())
         {
-            Instantiate(shotObject, transform.position, Quaternion.identity);
+            Instantiate(shotObject, transform.position, transform.rotation);
         }
     }
 }
