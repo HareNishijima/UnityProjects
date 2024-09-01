@@ -5,7 +5,7 @@ using UnityEngine;
 class PlayerTransform : MonoBehaviour
 {
     Controller controller;
-    PlayerController playerController;
+    PlayerTransformController playerTransformController;
     Vector2 newPosition;
     Quaternion newQuaternion;
     Rigidbody2D rigidbody2d;
@@ -14,7 +14,7 @@ class PlayerTransform : MonoBehaviour
     void Start()
     {
         controller = new Controller();
-        playerController = new PlayerController();
+        playerTransformController = new PlayerTransformController();
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
@@ -23,8 +23,8 @@ class PlayerTransform : MonoBehaviour
         Vector2 rawInput = controller.RawInput();
         Vector2 moveInput = controller.AdjustedInput();
 
-        newPosition = playerController.NewPosition(moveInput, rigidbody2d.position);
-        newQuaternion = playerController.NewQuaternion(rawInput, transform.rotation);
+        newPosition = playerTransformController.NewPosition(moveInput, rigidbody2d.position);
+        newQuaternion = playerTransformController.NewQuaternion(rawInput, transform.rotation);
     }
 
     // Update is called once per frame

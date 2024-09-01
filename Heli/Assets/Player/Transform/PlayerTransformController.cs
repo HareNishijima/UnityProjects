@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerController
+public class PlayerTransformController
 {
     public Vector2 position;
     public Quaternion quaternion;
