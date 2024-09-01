@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShotController : MonoBehaviour
+public class PlayerShotController
 {
     Controller controller;
     float lastShotTime;
@@ -10,8 +8,9 @@ public class PlayerShotController : MonoBehaviour
     float coolTime;
 
     // Start is called before the first frame update
-    void Start()
+    public PlayerShotController()
     {
+        controller = new Controller();
         lastShotTime = Time.time;
         coolTime = 0.1f;
     }
@@ -26,6 +25,7 @@ public class PlayerShotController : MonoBehaviour
         float lastShotTimeSpan = Time.time - lastShotTime;
         if (lastShotTimeSpan > coolTime)
         {
+            lastShotTime = Time.time;
             return true;
         }
         return false;
