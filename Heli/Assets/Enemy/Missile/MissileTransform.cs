@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTransform : MonoBehaviour
+public class MissileTransform : MonoBehaviour
 {
     float moveSpeed;
     GameObject playerObject;
