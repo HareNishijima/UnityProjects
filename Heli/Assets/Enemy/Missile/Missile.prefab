@@ -160,3 +160,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  particleObject: {fileID: 4020277782328014806, guid: b876263c8637f304f9dccdea9861767d, type: 3}
