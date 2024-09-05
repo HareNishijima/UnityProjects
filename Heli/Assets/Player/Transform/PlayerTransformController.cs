@@ -29,19 +29,14 @@ public class PlayerTransformController
 
         // キー入力で角度を変更
         float newAngleZ = 0f;
-        if (rawInput.x != 0f)
+        if (rawInput.y != 0f)
         {
-            // 右方向の入力で角度が減少、左方向の入力で角度が増加する
-            newAngleZ = Mathf.MoveTowards(angleZ, Math.Sign(rawInput.x) * -45f, deltaAngle);
-        }
-        else if (rawInput.x == 0f && rawInput.y != 0f)
-        {
-            // 左右方向へ入力していないときに限り、上方向の入力で角度が増加、下方向の入力で角度が減少する
+            // 上方向の入力で角度が増加、下方向の入力で角度が減少する
             newAngleZ = Mathf.MoveTowards(angleZ, Math.Sign(rawInput.y) * 45f, deltaAngle);
         }
-        else if (rawInput.x == 0f && rawInput.y == 0f)
+        else
         {
-            // 上下左右方向に入力していなければ、未操作時は0度に近づく
+            // キーを入力していなければ、未操作時は0度に近づく
             newAngleZ = Mathf.MoveTowards(angleZ, 0f, deltaAngle);
         }
 
