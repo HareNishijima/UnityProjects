@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class PlayerTransform : MonoBehaviour
 {
+    new Rigidbody2D rigidbody2D;
+
+    void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
     public void move(Vector2 moveVector)
     {
-        transform.position = transform.position + new Vector3(moveVector.x, moveVector.y, 0f);
+        rigidbody2D.position = rigidbody2D.position + moveVector;
     }
 }
