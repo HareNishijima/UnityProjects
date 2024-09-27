@@ -13,7 +13,7 @@ public class DroneController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        GetComponent<EnemyShot>().Shot();
+        GetComponent<EnemyShot>().Machinegun();
 
         yield break;
     }
