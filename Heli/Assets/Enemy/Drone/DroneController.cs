@@ -11,7 +11,7 @@ public class DroneController : MonoBehaviour
 
     IEnumerator Coroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         GetComponent<EnemyShot>().Shot();
 

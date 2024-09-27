@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyShot : MonoBehaviour
 {
+
+    public GameObject enemyBulletObject;
+
     public void Shot()
     {
-        return;
+        Instantiate(enemyBulletObject, transform.position, transform.rotation);
     }
 }

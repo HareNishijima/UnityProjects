@@ -15,7 +15,7 @@ public class DroneTransform : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 moveVec = -transform.right * moveSpeed;
+        Vector2 moveVec = transform.right * moveSpeed;
         rigidbody2d.position += moveVec * Time.fixedDeltaTime;
     }
 }
