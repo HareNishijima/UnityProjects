@@ -14,7 +14,8 @@ public class PlayerHP : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
-            new SceneManager().ToGameOver();
+            GameObject gameDirector = GameObject.FindGameObjectWithTag("GameDirector");
+            gameDirector.GetComponent<SceneDirector>().ToGameOver();
         }
     }
 
