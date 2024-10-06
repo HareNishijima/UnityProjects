@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Cci;
 using UnityEngine;
 
 public class PlayerHP : MonoBehaviour
@@ -15,6 +14,7 @@ public class PlayerHP : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            new SceneManager().ToGameOver();
         }
     }
 
