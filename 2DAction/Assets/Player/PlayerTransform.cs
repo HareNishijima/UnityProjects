@@ -13,6 +13,6 @@ public class PlayerTransform : MonoBehaviour
 
     public void move(Vector2 moveVector)
     {
-        rigidbody2D.position = rigidbody2D.position + moveVector;
+        rigidbody2D.MovePosition(rigidbody2D.position + moveVector);
     }
 }
