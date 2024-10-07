@@ -273,8 +273,6 @@ GameObject:
   - component: {fileID: 1372961908}
   - component: {fileID: 1372961913}
   - component: {fileID: 1372961912}
-  - component: {fileID: 1372961914}
-  - component: {fileID: 1372961915}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -436,47 +434,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &1372961914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372961907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cd087d47373ad4faba5315bc834cd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contactFilter2d:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 1
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 70
-    maxNormalAngle: 110
---- !u!114 &1372961915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372961907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4150a69c16408da4dabb4f46973550a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpPower: 0
-  maxJumpVector: {x: 0, y: 0}
-  jumpVectorDelta: 0
 --- !u!1 &1664450446
 GameObject:
   m_ObjectHideFlags: 0
