@@ -5,25 +5,23 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     PlayerTransform playerTransform;
-    Vector2 moveVector;
-    public float moveSpeed = 1f;
+    Vector2 AxisRawInput;
 
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = GetComponent<PlayerTransform>();
-        moveVector = Vector2.zero;
+        AxisRawInput = Vector2.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveVector = AxisRawInput * moveSpeed * Time.fixedDeltaTime;
+        AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     void FixedUpdate()
     {
-        playerTransform.move(moveVector);
+        playerTransform.Input(AxisRawInput);
     }
 }
