@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-
-    Controller controller;
     PlayerTransform playerTransform;
     Vector2 moveVector;
     public float moveSpeed = 1f;
@@ -13,7 +11,6 @@ public class PlayerMoveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = new Controller();
         playerTransform = GetComponent<PlayerTransform>();
         moveVector = Vector2.zero;
     }
@@ -21,7 +18,7 @@ public class PlayerMoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 AxisRawInput = controller.GetAxisRaw();
+        Vector2 AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveVector = AxisRawInput * moveSpeed * Time.fixedDeltaTime;
     }
 
