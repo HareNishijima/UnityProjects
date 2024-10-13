@@ -26,6 +26,9 @@ public class PlayerAttack : MonoBehaviour
         // マウスの座標を取得
         Vector2 mosuePosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        float angle = GetAngleToTarget(weaponObject.transform, mosuePosition);
+        weaponObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
         // 攻撃判定を持つオブジェクトの当たり判定を有効化
         weaponObject.GetComponent<BoxCollider2D>().enabled = true;
     }
@@ -36,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
 
         // この関数が呼び出されるたびにオブジェクトの長さを伸ばす
         length += deltaLength * Time.fixedDeltaTime;
-        weaponObject.transform.localScale = new Vector3(transform.localScale.x, length, transform.localScale.z);
+        weaponObject.transform.localScale = new Vector3(length, transform.localScale.y, transform.localScale.z);
     }
 
     public void AttackEnd()
@@ -50,11 +53,19 @@ public class PlayerAttack : MonoBehaviour
         if (length <= 0f)
         {
             length = 0f;
-            weaponObject.transform.localScale = new Vector3(transform.localScale.x, 0f, transform.localScale.z);
+            weaponObject.transform.localScale = new Vector3(0f, transform.localScale.y, transform.localScale.z);
             weaponObject.GetComponent<BoxCollider2D>().enabled = false;
             playerState.ToReady();
         }
 
-        weaponObject.transform.localScale = new Vector3(transform.localScale.x, length, transform.localScale.z);
+        weaponObject.transform.localScale = new Vector3(length, transform.localScale.y, transform.localScale.z);
+    }
+
+    float GetAngleToTarget(Transform selfTransform, Vector2 targetPosition)
+    {
+        Vector2 diffPosition = targetPosition - (Vector2)selfTransform.position;
+        float angleToTarget = Mathf.Atan2(diffPosition.y, diffPosition.x) * Mathf.Rad2Deg;
+
+        return angleToTarget;
     }
 }
