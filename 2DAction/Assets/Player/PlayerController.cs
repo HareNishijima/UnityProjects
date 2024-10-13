@@ -5,19 +5,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     PlayerTransform playerTransform;
-    PlayerAttack playerAttack;
+    //PlayerAttack playerAttack;
     Vector2 AxisRawInput;
-
-    enum State { Ready, Attack, AttackReturn };
-    State state;
+    PlayerState playerState;
 
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = GetComponent<PlayerTransform>();
-        playerAttack = GetComponent<PlayerAttack>();
+        //playerAttack = GetComponent<PlayerAttack>();
+        playerState = GetComponent<PlayerState>();
         AxisRawInput = Vector2.zero;
-        state = State.Ready;
     }
 
     // Update is called once per frame
@@ -25,30 +23,30 @@ public class PlayerController : MonoBehaviour
     {
         AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (state == State.Ready && Input.GetButtonDown("Fire1"))
+        if (playerState.IsReady() && Input.GetButtonDown("Fire1"))
         {
-            state = State.Attack;
-            playerAttack.AttackStart();
+            playerState.ToAttack();
+            //playerAttack.AttackStart();
         }
-        else if (state == State.Attack && Input.GetButtonUp("Fire1"))
+        else if (playerState.IsAttack() && Input.GetButtonUp("Fire1"))
         {
-            state = State.AttackReturn;
+            playerState.ToAttackReturn();
         }
     }
 
     void FixedUpdate()
     {
-        if (state == State.Ready)
+        if (playerState.IsReady())
         {
             playerTransform.Input(AxisRawInput);
         }
-        else if (state == State.Attack)
+        else if (playerState.IsAttack())
         {
-            playerAttack.AttackPlay();
+            //playerAttack.AttackPlay();
         }
-        else if (state == State.AttackReturn)
+        else if (playerState.IsAttackReturn())
         {
-            playerAttack.AttackEnd();
+            // playerAttack.AttackEnd();
         }
 
     }
