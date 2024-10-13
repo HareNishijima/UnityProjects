@@ -462,8 +462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297a358b89d51654d84bbaaf3455d5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaLength: 100
-  deltaReverseLength: 200
+  deltaLength: 150
+  deltaReverseLength: 300
   weaponObject: {fileID: 1894925327}
 --- !u!114 &1372961918
 MonoBehaviour:

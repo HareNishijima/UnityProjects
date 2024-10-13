@@ -19,14 +19,12 @@ public class PlayerAttack : MonoBehaviour
         playerState = GetComponent<PlayerState>();
     }
 
-    public void AttackStart()
+    public void AttackStart(Vector2 AxisRawInput)
     {
         // 攻撃キーを押下開始
+        Vector2 targetPosition = (Vector2)transform.position + AxisRawInput;
 
-        // マウスの座標を取得
-        Vector2 mosuePosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        float angle = GetAngleToTarget(weaponObject.transform, mosuePosition);
+        float angle = GetAngleToTarget(weaponObject.transform, targetPosition);
         weaponObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         // 攻撃判定を持つオブジェクトの当たり判定を有効化

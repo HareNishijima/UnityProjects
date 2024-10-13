@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerState.IsReady() && Input.GetButtonDown("Fire1"))
         {
-            playerAttack.AttackStart();
+            playerAttack.AttackStart(AxisRawInput);
         }
         else if (playerState.IsAttack() && Input.GetButtonUp("Fire1"))
         {
