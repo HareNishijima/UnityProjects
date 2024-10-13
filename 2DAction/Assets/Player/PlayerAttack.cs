@@ -21,13 +21,13 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackStart(Vector2 AxisRawInput)
     {
-        playerState.ToAttack();
-
         Vector2 targetPosition = (Vector2)transform.position + AxisRawInput;
         float angle = GetAngleToTarget(weaponObject.transform, targetPosition);
 
         weaponObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
         weaponObject.GetComponent<BoxCollider2D>().enabled = true;
+
+        playerState.ToAttack();
     }
 
     public void AttackPlay()
