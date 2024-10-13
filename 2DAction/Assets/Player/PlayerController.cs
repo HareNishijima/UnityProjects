@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     PlayerTransform playerTransform;
     PlayerAttack playerAttack;
+    PlayerJump playerJump;
     Vector2 AxisRawInput;
     PlayerState playerState;
 
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
         playerTransform = GetComponent<PlayerTransform>();
         playerAttack = GetComponent<PlayerAttack>();
         playerState = GetComponent<PlayerState>();
+        playerJump = GetComponent<PlayerJump>();
         AxisRawInput = Vector2.zero;
     }
 
@@ -25,18 +27,22 @@ public class PlayerController : MonoBehaviour
 
         if (playerState.IsReady() && Input.GetButtonDown("Fire1"))
         {
-            playerState.ToAttack();
             playerAttack.AttackStart();
         }
         else if (playerState.IsAttack() && Input.GetButtonUp("Fire1"))
         {
             playerState.ToAttackReturn();
         }
+
+        if (playerState.IsGround() && Input.GetButtonDown("Jump"))
+        {
+            playerJump.Jump(AxisRawInput);
+        }
     }
 
     void FixedUpdate()
     {
-        if (playerState.IsReady())
+        if (playerState.IsGround() && playerState.IsReady())
         {
             playerTransform.Input(AxisRawInput);
         }

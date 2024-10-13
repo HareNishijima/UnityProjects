@@ -7,49 +7,43 @@ public class PlayerJump : MonoBehaviour
     public float maxHeight;
     public float d = 1f;
     PlayerTransform playerTransform;
+    PlayerState playerState;
 
     float currentHeight;
     float jumpTime;
-
-    bool isGround;
+    float moveX;
 
     // Start is called before the first frame update
     void Start()
     {
-        isGround = true;
         jumpTime = 0f;
         playerTransform = GetComponent<PlayerTransform>();
+        playerState = GetComponent<PlayerState>();
         currentHeight = transform.position.y;
-    }
-
-    void Update()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
     }
 
     void FixedUpdate()
     {
-        if (!isGround)
+        if (!playerState.IsGround())
         {
             jumpTime = Mathf.MoveTowards(jumpTime, 1f, Time.fixedDeltaTime);
             if (jumpTime >= 1f)
             {
                 currentHeight = maxHeight * (1f - (1f - Mathf.Pow(1f, d)));
-                isGround = true;
+                playerState.ToGround();
                 jumpTime = 0f;
                 return;
             }
             currentHeight = maxHeight * (1f - (1f - Mathf.Pow(Mathf.Sin(Mathf.PI * jumpTime), d)));
             playerTransform.SetHeight(currentHeight);
+            playerTransform.Input(new Vector2(moveX, 0f));
         }
     }
 
-    public void Jump()
+    public void Jump(Vector2 AxisRawInput)
     {
-        isGround = false;
+        moveX = AxisRawInput.x;
         currentHeight = transform.position.y;
+        playerState.LeaveGround();
     }
 }

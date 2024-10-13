@@ -31,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
 
         // 攻撃判定を持つオブジェクトの当たり判定を有効化
         weaponObject.GetComponent<BoxCollider2D>().enabled = true;
+
+        playerState.ToAttack();
     }
 
     public void AttackPlay()
