@@ -35,7 +35,6 @@ public class PlayerJump : MonoBehaviour
         if (!isGround)
         {
             jumpTime = Mathf.MoveTowards(jumpTime, 1f, Time.fixedDeltaTime);
-
             if (jumpTime >= 1f)
             {
                 currentHeight = maxHeight * (1f - (1f - Mathf.Pow(1f, d)));
