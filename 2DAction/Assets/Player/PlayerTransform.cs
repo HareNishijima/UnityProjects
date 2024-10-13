@@ -17,4 +17,9 @@ public class PlayerTransform : MonoBehaviour
         Vector2 moveVector = AxisRawInput * moveSpeed * Time.fixedDeltaTime;
         rigidbody2D.MovePosition(rigidbody2D.position + moveVector);
     }
+
+    public void SetHeight(float height)
+    {
+        rigidbody2D.MovePosition(new Vector2(rigidbody2D.position.x, height));
+    }
 }
