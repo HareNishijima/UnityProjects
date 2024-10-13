@@ -11,12 +11,12 @@ public class PlayerAttack : MonoBehaviour
     public float deltaLength;
     public float deltaReverseLength;
     public GameObject weaponObject;
-    PlayerAttackState playerAttackState;
+    PlayerState playerState;
 
     void Start()
     {
         length = 0f;
-        playerAttackState = GetComponent<PlayerAttackState>();
+        playerState = GetComponent<PlayerState>();
     }
 
     public void AttackStart()
@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
             length = 0f;
             weaponObject.transform.localScale = new Vector3(0f, transform.localScale.y, transform.localScale.z);
             weaponObject.GetComponent<BoxCollider2D>().enabled = false;
-            playerAttackState.ToReady();
+            playerState.ToReady();
         }
 
         weaponObject.transform.localScale = new Vector3(length, transform.localScale.y, transform.localScale.z);

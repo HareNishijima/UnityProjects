@@ -7,14 +7,14 @@ public class PlayerController : MonoBehaviour
     PlayerTransform playerTransform;
     PlayerAttack playerAttack;
     Vector2 AxisRawInput;
-    PlayerAttackState playerAttackState;
+    PlayerState playerState;
 
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = GetComponent<PlayerTransform>();
         playerAttack = GetComponent<PlayerAttack>();
-        playerAttackState = GetComponent<PlayerAttackState>();
+        playerState = GetComponent<PlayerState>();
         AxisRawInput = Vector2.zero;
     }
 
@@ -23,28 +23,28 @@ public class PlayerController : MonoBehaviour
     {
         AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (playerAttackState.IsReady() && Input.GetButtonDown("Fire1"))
+        if (playerState.IsReady() && Input.GetButtonDown("Fire1"))
         {
-            playerAttackState.ToAttack();
+            playerState.ToAttack();
             playerAttack.AttackStart();
         }
-        else if (playerAttackState.IsAttack() && Input.GetButtonUp("Fire1"))
+        else if (playerState.IsAttack() && Input.GetButtonUp("Fire1"))
         {
-            playerAttackState.ToAttackReturn();
+            playerState.ToAttackReturn();
         }
     }
 
     void FixedUpdate()
     {
-        if (playerAttackState.IsReady())
+        if (playerState.IsReady())
         {
             playerTransform.Input(AxisRawInput);
         }
-        else if (playerAttackState.IsAttack())
+        else if (playerState.IsAttack())
         {
             playerAttack.AttackPlay();
         }
-        else if (playerAttackState.IsAttackReturn())
+        else if (playerState.IsAttackReturn())
         {
             playerAttack.AttackEnd();
         }
