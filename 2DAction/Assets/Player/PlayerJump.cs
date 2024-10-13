@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    public float maxHeightToTime;
     public float maxHeight;
+    public float d = 1f;
     PlayerTransform playerTransform;
 
     float currentHeight;
+    float jumpTime;
 
     bool isGround;
 
@@ -16,6 +17,7 @@ public class PlayerJump : MonoBehaviour
     void Start()
     {
         isGround = true;
+        jumpTime = 0f;
         playerTransform = GetComponent<PlayerTransform>();
         currentHeight = transform.position.y;
     }
@@ -32,12 +34,16 @@ public class PlayerJump : MonoBehaviour
     {
         if (!isGround)
         {
-            if (currentHeight >= maxHeight)
+            jumpTime = Mathf.MoveTowards(jumpTime, 1f, Time.fixedDeltaTime);
+
+            if (jumpTime >= 1f)
             {
+                currentHeight = maxHeight * (1f - (1f - Mathf.Pow(1f, d)));
                 isGround = true;
+                jumpTime = 0f;
                 return;
             }
-            currentHeight = Mathf.MoveTowards(currentHeight, maxHeight, maxHeight * maxHeightToTime * Time.fixedDeltaTime);
+            currentHeight = maxHeight * (1f - (1f - Mathf.Pow(Mathf.Sin(Mathf.PI * jumpTime), d)));
             playerTransform.SetHeight(currentHeight);
         }
     }
