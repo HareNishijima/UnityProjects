@@ -11,10 +11,12 @@ public class PlayerAttack : MonoBehaviour
     public float deltaLength;
     public float deltaReverseLength;
     public GameObject weaponObject;
+    PlayerState playerState;
 
     void Start()
     {
         length = 0f;
+        playerState = GetComponent<PlayerState>();
     }
 
     public void AttackStart()
@@ -33,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
         // 攻撃キー押下中
 
         // この関数が呼び出されるたびにオブジェクトの長さを伸ばす
-        length += deltaLength;
+        length += deltaLength * Time.fixedDeltaTime;
         weaponObject.transform.localScale = new Vector3(transform.localScale.x, length, transform.localScale.z);
     }
 
@@ -42,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
         // 攻撃キーを離す
 
         // オブジェクトの長さを縮める
-        length -= deltaReverseLength;
+        length -= deltaReverseLength * Time.fixedDeltaTime;
 
         // オブジェクトの長さが0以下になったら当たり判定を無効化
         if (length <= 0f)
@@ -50,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
             length = 0f;
             weaponObject.transform.localScale = new Vector3(transform.localScale.x, 0f, transform.localScale.z);
             weaponObject.GetComponent<BoxCollider2D>().enabled = false;
-            // todo: ステート変更
+            playerState.ToReady();
         }
 
         weaponObject.transform.localScale = new Vector3(transform.localScale.x, length, transform.localScale.z);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     PlayerTransform playerTransform;
-    //PlayerAttack playerAttack;
+    PlayerAttack playerAttack;
     Vector2 AxisRawInput;
     PlayerState playerState;
 
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerTransform = GetComponent<PlayerTransform>();
-        //playerAttack = GetComponent<PlayerAttack>();
+        playerAttack = GetComponent<PlayerAttack>();
         playerState = GetComponent<PlayerState>();
         AxisRawInput = Vector2.zero;
     }
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         if (playerState.IsReady() && Input.GetButtonDown("Fire1"))
         {
             playerState.ToAttack();
-            //playerAttack.AttackStart();
+            playerAttack.AttackStart();
         }
         else if (playerState.IsAttack() && Input.GetButtonUp("Fire1"))
         {
@@ -42,11 +42,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerState.IsAttack())
         {
-            //playerAttack.AttackPlay();
+            playerAttack.AttackPlay();
         }
         else if (playerState.IsAttackReturn())
         {
-            // playerAttack.AttackEnd();
+            playerAttack.AttackEnd();
         }
 
     }
