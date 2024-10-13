@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
+        // 移動
         if (playerState.IsReady() && Input.GetButtonDown("Fire1"))
         {
             playerAttack.AttackStart(AxisRawInput);
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
             playerState.ToAttackReturn();
         }
 
+        // 攻撃
         if (playerState.IsGround() && Input.GetButtonDown("Jump"))
         {
             playerJump.Jump(AxisRawInput);
@@ -54,6 +56,5 @@ public class PlayerController : MonoBehaviour
         {
             playerAttack.AttackEnd();
         }
-
     }
 }

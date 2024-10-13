@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     public float maxHeight;
-    public float d = 1f;
+    public float sinCurveDistortion = 1f;
     PlayerTransform playerTransform;
     PlayerState playerState;
-
     float currentHeight;
     float jumpTime;
-    float moveX;
+    float jumpMoveX;
 
     // Start is called before the first frame update
     void Start()
@@ -24,25 +23,27 @@ public class PlayerJump : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!playerState.IsGround())
+        if (playerState.IsGround()) return;
+
+        jumpTime = Mathf.MoveTowards(jumpTime, 1f, Time.fixedDeltaTime);
+
+        // ジャンプ開始からjumpTime秒経過したら着地とする
+        if (jumpTime >= 1f)
         {
-            jumpTime = Mathf.MoveTowards(jumpTime, 1f, Time.fixedDeltaTime);
-            if (jumpTime >= 1f)
-            {
-                currentHeight = maxHeight * (1f - (1f - Mathf.Pow(1f, d)));
-                playerState.ToGround();
-                jumpTime = 0f;
-                return;
-            }
-            currentHeight = maxHeight * (1f - (1f - Mathf.Pow(Mathf.Sin(Mathf.PI * jumpTime), d)));
-            playerTransform.SetHeight(currentHeight);
-            playerTransform.Input(new Vector2(moveX, 0f));
+            jumpTime = 0f;
+            currentHeight = maxHeight * (1f - (1f - Mathf.Pow(1f, sinCurveDistortion)));
+            playerState.ToGround();
+            return;
         }
+        currentHeight = maxHeight * (1f - (1f - Mathf.Pow(Mathf.Sin(Mathf.PI * jumpTime), sinCurveDistortion)));
+        playerTransform.SetHeight(currentHeight);
+        playerTransform.Input(new Vector2(jumpMoveX, 0f));
+
     }
 
     public void Jump(Vector2 AxisRawInput)
     {
-        moveX = AxisRawInput.x;
+        jumpMoveX = AxisRawInput.x;
         currentHeight = transform.position.y;
         playerState.LeaveGround();
     }

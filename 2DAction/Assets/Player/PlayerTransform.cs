@@ -31,12 +31,10 @@ public class PlayerTransform : MonoBehaviour
     {
         Vector2 HorizontalRawInput = new Vector2(axisRawInput.x, 0f);
         moveVector = HorizontalRawInput * moveSpeed * Time.fixedDeltaTime;
-        //rigidbody2D.MovePosition(rigidbody2D.position + moveVector);
     }
 
     public void SetHeight(float height)
     {
         jumpVector = new Vector2(0f, height);
-        //rigidbody2D.MovePosition(rigidbody2D.position + jumpVector);
     }
 }
