@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerAttackState : MonoBehaviour
 {
 
     public enum State { Ready, Attack, AttackReturn };
