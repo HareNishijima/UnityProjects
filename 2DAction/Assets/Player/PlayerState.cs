@@ -5,42 +5,59 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
 
-    public enum State { Ready, Attack, AttackReturn };
-    State state;
+    enum AttackState { Ready, Attack, AttackReturn };
+    AttackState attackstate;
+    bool isGround;
 
     // Start is called before the first frame update
     void Start()
     {
-        state = State.Ready;
+        attackstate = AttackState.Ready;
+        isGround = true;
     }
 
     public bool IsReady()
     {
-        return state == State.Ready;
+        return attackstate == AttackState.Ready;
     }
 
     public bool IsAttack()
     {
-        return state == State.Attack;
+        return attackstate == AttackState.Attack;
     }
 
     public bool IsAttackReturn()
     {
-        return state == State.AttackReturn;
+        return attackstate == AttackState.AttackReturn;
+    }
+
+    public bool IsGround()
+    {
+        return isGround;
     }
 
     public void ToReady()
     {
-        state = State.Ready;
+        attackstate = AttackState.Ready;
     }
 
     public void ToAttack()
     {
-        state = State.Attack;
+        attackstate = AttackState.Attack;
     }
 
     public void ToAttackReturn()
     {
-        state = State.AttackReturn;
+        attackstate = AttackState.AttackReturn;
+    }
+
+    public void ToGround()
+    {
+        isGround = true;
+    }
+
+    public void LeaveGround()
+    {
+        isGround = false;
     }
 }
