@@ -33,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
     public void AttackPlay()
     {
         length += deltaLength * Time.fixedDeltaTime;
-        weaponObject.transform.localScale = new Vector3(length, transform.localScale.y, transform.localScale.z);
+        weaponObject.transform.localPosition = weaponObject.transform.right * length;
     }
 
     public void AttackEnd()
@@ -42,13 +42,13 @@ public class PlayerAttack : MonoBehaviour
 
         if (length > 0f)
         {
-            weaponObject.transform.localScale = new Vector3(length, transform.localScale.y, transform.localScale.z);
+            weaponObject.transform.localPosition = weaponObject.transform.right * length;
             return;
         }
 
         // 武器のlengthが0になったら終了
         length = 0f;
-        weaponObject.transform.localScale = new Vector3(0f, transform.localScale.y, transform.localScale.z);
+        weaponObject.transform.localPosition = Vector3.zero;
         weaponObject.GetComponent<BoxCollider2D>().enabled = false;
         playerState.ToReady();
         return;
