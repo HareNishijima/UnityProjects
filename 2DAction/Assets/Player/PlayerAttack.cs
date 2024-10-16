@@ -21,7 +21,8 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackStart(Vector2 AxisRawInput)
     {
-        Vector2 targetPosition = (Vector2)transform.position + AxisRawInput;
+        //Vector2 targetPosition = (Vector2)transform.position + AxisRawInput;
+        Vector2 targetPosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float angle = GetAngleToTarget(weaponObject.transform, targetPosition);
 
         weaponObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
