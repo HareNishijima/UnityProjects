@@ -12,9 +12,12 @@ public class PlayerTransform : MonoBehaviour
     Vector2 moveVector;
     Vector2 jumpVector;
 
+    CameraTransform cameraTransform;
+
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        cameraTransform = GameObject.FindWithTag("MainCamera").GetComponent<CameraTransform>();
         moveVector = Vector2.zero;
         jumpVector = Vector2.zero;
     }
@@ -25,6 +28,9 @@ public class PlayerTransform : MonoBehaviour
 
         moveVector = Vector2.zero;
         jumpVector = Vector2.zero;
+
+        // プレイヤーの移動処理がすべて完了した後にカメラを追従させる
+        cameraTransform.cameraMove(rigidbody2D.position);
     }
 
     public void Input(Vector2 axisRawInput)
