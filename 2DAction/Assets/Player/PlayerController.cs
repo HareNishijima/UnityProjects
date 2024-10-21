@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     PlayerTransform playerTransform;
-    PlayerAttack playerAttack;
     PlayerJump playerJump;
     Vector2 AxisRawInput;
     PlayerState playerState;
@@ -14,7 +13,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerTransform = GetComponent<PlayerTransform>();
-        playerAttack = GetComponent<PlayerAttack>();
         playerState = GetComponent<PlayerState>();
         playerJump = GetComponent<PlayerJump>();
         AxisRawInput = Vector2.zero;
@@ -25,17 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        // 移動
-        if (playerState.IsReady() && Input.GetButtonDown("Fire1"))
-        {
-            playerAttack.AttackStart(AxisRawInput);
-        }
-        else if (playerState.IsAttack() && Input.GetButtonUp("Fire1"))
-        {
-            playerState.ToAttackReturn();
-        }
-
-        // 攻撃
+        // ジャンプ
         if (playerState.IsGround() && Input.GetButtonDown("Jump"))
         {
             playerJump.Jump(AxisRawInput);
@@ -44,17 +32,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (playerState.IsGround() && playerState.IsReady())
+        if (playerState.IsGround())
         {
             playerTransform.Input(AxisRawInput);
-        }
-        else if (playerState.IsAttack())
-        {
-            playerAttack.AttackPlay();
-        }
-        else if (playerState.IsAttackReturn())
-        {
-            playerAttack.AttackEnd();
         }
     }
 }

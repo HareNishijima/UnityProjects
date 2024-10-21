@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
 
-    enum AttackState { Ready, Attack, AttackReturn };
+    enum AttackState { Ready, Attack };
     AttackState attackstate;
     bool isGround;
 
@@ -26,11 +26,6 @@ public class PlayerState : MonoBehaviour
         return attackstate == AttackState.Attack;
     }
 
-    public bool IsAttackReturn()
-    {
-        return attackstate == AttackState.AttackReturn;
-    }
-
     public bool IsGround()
     {
         return isGround;
@@ -44,11 +39,6 @@ public class PlayerState : MonoBehaviour
     public void ToAttack()
     {
         attackstate = AttackState.Attack;
-    }
-
-    public void ToAttackReturn()
-    {
-        attackstate = AttackState.AttackReturn;
     }
 
     public void ToGround()
