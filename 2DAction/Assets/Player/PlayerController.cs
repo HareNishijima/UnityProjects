@@ -23,10 +23,20 @@ public class PlayerController : MonoBehaviour
     {
         AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        // ジャンプ
+        // ジャンプ開始
         if (playerState.IsGround() && Input.GetButtonDown("Jump"))
         {
-            playerJump.Jump(AxisRawInput);
+
+        }
+        // ボタン長押しでジャンプ上昇中
+        if (playerState.IsRising() && Input.GetButton("Jump"))
+        {
+
+        }
+        // 上昇中にボタンを離すと落下開始(?)
+        if (playerState.IsRising() && Input.GetButtonUp("Jump"))
+        {
+
         }
     }
 
