@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerTransform : MonoBehaviour
 {
@@ -21,7 +17,7 @@ public class PlayerTransform : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidbody2D.MovePosition(new Vector2(rigidbody2D.position.x + moveVector.x, jumpVector.y));
+        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(moveVector.x, jumpVector.y));
 
         moveVector = Vector2.zero;
         jumpVector = Vector2.zero;
@@ -33,8 +29,8 @@ public class PlayerTransform : MonoBehaviour
         moveVector = HorizontalRawInput * moveSpeed * Time.fixedDeltaTime;
     }
 
-    public void SetHeight(float height)
+    public void SetJumpVector(Vector2 v)
     {
-        jumpVector = new Vector2(0f, height);
+        jumpVector = v * Time.fixedDeltaTime;
     }
 }

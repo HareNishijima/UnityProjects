@@ -4,47 +4,51 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    public float maxHeight;
-    public float sinCurveDistortion = 1f;
-    PlayerTransform playerTransform;
+    Rigidbody2D rb;
+    Vector2 jumpVec;
+
     PlayerState playerState;
-    float currentHeight;
-    float jumpTime;
-    float jumpMoveX;
+    PlayerTransform playerTransform;
+
+    public float deltaRising;
+    public float deltaFalling;
+    public float minFalling;
 
     // Start is called before the first frame update
     void Start()
     {
-        jumpTime = 0f;
-        playerTransform = GetComponent<PlayerTransform>();
+        rb = GetComponent<Rigidbody2D>();
+
+        jumpVec = Vector2.zero;
+
         playerState = GetComponent<PlayerState>();
-        currentHeight = transform.position.y;
+        playerTransform = GetComponent<PlayerTransform>();
     }
 
-    void FixedUpdate()
+    public void JumpStart()
     {
-        if (playerState.IsGround()) return;
+        playerState.ToRising();
 
-        jumpTime = Mathf.MoveTowards(jumpTime, 1f, Time.fixedDeltaTime);
-
-        // ジャンプ開始からjumpTime秒経過したら着地とする
-        if (jumpTime >= 1f)
-        {
-            jumpTime = 0f;
-            currentHeight = maxHeight * (1f - (1f - Mathf.Pow(1f, sinCurveDistortion)));
-            playerState.ToGround();
-            return;
-        }
-        currentHeight = maxHeight * (1f - (1f - Mathf.Pow(Mathf.Sin(Mathf.PI * jumpTime), sinCurveDistortion)));
-        playerTransform.SetHeight(currentHeight);
-        playerTransform.Input(new Vector2(jumpMoveX, 0f));
-
+        jumpVec = new Vector2(0f, deltaRising);
+        playerTransform.SetJumpVector(jumpVec);
     }
 
-    public void Jump(Vector2 AxisRawInput)
+    public void Rising()
     {
-        jumpMoveX = AxisRawInput.x;
-        currentHeight = transform.position.y;
-        playerState.LeaveGround();
+        playerTransform.SetJumpVector(jumpVec);
+    }
+
+    public void RisingEnd()
+    {
+        playerState.ToFalling();
+        playerTransform.SetJumpVector(jumpVec);
+    }
+
+    public void Falling()
+    {
+        float newJumpVecY = Mathf.Max(jumpVec.y - deltaFalling, minFalling);
+
+        jumpVec = new Vector2(jumpVec.x, newJumpVecY);
+        playerTransform.SetJumpVector(jumpVec);
     }
 }

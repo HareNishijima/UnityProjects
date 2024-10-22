@@ -26,17 +26,21 @@ public class PlayerController : MonoBehaviour
         // ジャンプ開始
         if (playerState.IsGround() && Input.GetButtonDown("Jump"))
         {
-
+            playerJump.JumpStart();
         }
         // ボタン長押しでジャンプ上昇中
         if (playerState.IsRising() && Input.GetButton("Jump"))
         {
-
+            playerJump.Rising();
         }
         // 上昇中にボタンを離すと落下開始(?)
         if (playerState.IsRising() && Input.GetButtonUp("Jump"))
         {
-
+            playerJump.RisingEnd();
+        }
+        if (playerState.IsFalling())
+        {
+            playerJump.Falling();
         }
     }
 
