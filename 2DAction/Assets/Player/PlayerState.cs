@@ -7,13 +7,14 @@ public class PlayerState : MonoBehaviour
 
     enum AttackState { Ready, Attack };
     AttackState attackstate;
-    bool isGround;
+    enum JumpState { Ground, Rising, Falling };
+    JumpState jumpState;
 
     // Start is called before the first frame update
     void Start()
     {
         attackstate = AttackState.Ready;
-        isGround = true;
+        jumpState = JumpState.Ground;
     }
 
     public bool IsReady()
@@ -28,7 +29,17 @@ public class PlayerState : MonoBehaviour
 
     public bool IsGround()
     {
-        return isGround;
+        return jumpState == JumpState.Ground;
+    }
+
+    public bool IsRising()
+    {
+        return jumpState == JumpState.Rising;
+    }
+
+    public bool IsFalling()
+    {
+        return jumpState == JumpState.Falling;
     }
 
     public void ToReady()
@@ -43,11 +54,16 @@ public class PlayerState : MonoBehaviour
 
     public void ToGround()
     {
-        isGround = true;
+        jumpState = JumpState.Ground;
     }
 
-    public void LeaveGround()
+    public void ToRising()
     {
-        isGround = false;
+        jumpState = JumpState.Rising;
+    }
+
+    public void ToFalling()
+    {
+        jumpState = JumpState.Falling;
     }
 }
