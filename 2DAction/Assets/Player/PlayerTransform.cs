@@ -33,4 +33,14 @@ public class PlayerTransform : MonoBehaviour
     {
         jumpVector = v * Time.fixedDeltaTime;
     }
+
+    public Vector2 GetMoveVector()
+    {
+        return moveVector;
+    }
+
+    public Vector2 GetJumpVector()
+    {
+        return jumpVector;
+    }
 }
