@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerTransform playerTransform;
     PlayerJump playerJump;
     Vector2 AxisRawInput;
     PlayerState playerState;
@@ -12,7 +11,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = GetComponent<PlayerTransform>();
         playerState = GetComponent<PlayerState>();
         playerJump = GetComponent<PlayerJump>();
         AxisRawInput = Vector2.zero;
@@ -41,14 +39,6 @@ public class PlayerController : MonoBehaviour
         if (playerState.IsFalling())
         {
             playerJump.Falling();
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (playerState.IsGround())
-        {
-            playerTransform.Input(AxisRawInput);
         }
     }
 }

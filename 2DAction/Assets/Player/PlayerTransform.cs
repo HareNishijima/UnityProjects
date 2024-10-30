@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerTransform : MonoBehaviour
 {
     new Rigidbody2D rigidbody2D;
-    public float moveSpeed = 10f;
 
     Vector2 moveVector;
     Vector2 jumpVector;
@@ -23,10 +22,9 @@ public class PlayerTransform : MonoBehaviour
         jumpVector = Vector2.zero;
     }
 
-    public void Input(Vector2 axisRawInput)
+    public void Move(Vector2 v)
     {
-        Vector2 HorizontalRawInput = new Vector2(axisRawInput.x, 0f);
-        moveVector = HorizontalRawInput * moveSpeed * Time.fixedDeltaTime;
+        moveVector = new Vector2(v.x, 0f) * Time.fixedDeltaTime;
     }
 
     public void SetJumpVector(Vector2 v)
