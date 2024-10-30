@@ -27,7 +27,7 @@ public class PlayerTransform : MonoBehaviour
         moveVector = new Vector2(v.x, 0f) * Time.fixedDeltaTime;
     }
 
-    public void SetJumpVector(Vector2 v)
+    public void Jump(Vector2 v)
     {
         jumpVector = v * Time.fixedDeltaTime;
     }

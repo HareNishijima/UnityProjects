@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     Rigidbody2D rb;
-    Vector2 jumpVec;
+    Vector2 jumpVector;
 
     PlayerState playerState;
     PlayerTransform playerTransform;
 
+    public float startRising;
     public float deltaRising;
     public float deltaFalling;
     public float minFalling;
@@ -18,37 +19,41 @@ public class PlayerJump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        jumpVec = Vector2.zero;
-
+        jumpVector = Vector2.zero;
         playerState = GetComponent<PlayerState>();
         playerTransform = GetComponent<PlayerTransform>();
     }
 
-    public void JumpStart()
+    void Update()
     {
-        playerState.ToRising();
+        // ジャンプ開始
+        if (playerState.IsGround() && Input.GetButtonDown("Jump"))
+        {
+            playerState.ToRising();
 
-        jumpVec = new Vector2(0f, deltaRising);
-        playerTransform.SetJumpVector(jumpVec);
+            jumpVector = new Vector2(0f, startRising);
+        }
+        // ボタン長押しでジャンプ上昇中
+        if (playerState.IsRising() && Input.GetButton("Jump"))
+        {
+            jumpVector -= new Vector2(0f, deltaRising);
+        }
+        // 上昇中にボタンを離すと落下開始
+        if (playerState.IsRising() && Input.GetButtonUp("Jump"))
+        {
+            playerState.ToFalling();
+        }
+        // 落下中
+        if (playerState.IsFalling())
+        {
+            float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFalling, minFalling);
+
+            jumpVector = new Vector2(0f, newJumpVectorY);
+        }
     }
 
-    public void Rising()
+    void FixedUpdate()
     {
-        playerTransform.SetJumpVector(jumpVec);
-    }
-
-    public void RisingEnd()
-    {
-        playerState.ToFalling();
-        playerTransform.SetJumpVector(jumpVec);
-    }
-
-    public void Falling()
-    {
-        float newJumpVecY = Mathf.Max(jumpVec.y - deltaFalling, minFalling);
-
-        jumpVec = new Vector2(jumpVec.x, newJumpVecY);
-        playerTransform.SetJumpVector(jumpVec);
+        playerTransform.Jump(jumpVector);
     }
 }

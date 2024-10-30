@@ -333,11 +333,11 @@ GameObject:
   - component: {fileID: 1372961910}
   - component: {fileID: 1372961913}
   - component: {fileID: 1372961912}
+  - component: {fileID: 1372961919}
   - component: {fileID: 1372961908}
-  - component: {fileID: 1372961914}
   - component: {fileID: 1372961916}
   - component: {fileID: 1372961918}
-  - component: {fileID: 1372961919}
+  - component: {fileID: 1372961920}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -357,7 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6816055e48404ff4590a3d681f287789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!212 &1372961910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -487,18 +486,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &1372961914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372961907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b3b6795cade32418d0135d9f3c8f7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1372961916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,9 +510,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d7ef274d9a314984464954ecbf2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaRising: 20
+  startRising: 50
+  deltaRising: 0.1
   deltaFalling: 0.2
-  minFalling: -18
+  minFalling: -15
 --- !u!95 &1372961919
 Animator:
   serializedVersion: 5
@@ -547,6 +535,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1372961920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372961907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05714094248424498f0b0799e651fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
 --- !u!1 &1664450446
 GameObject:
   m_ObjectHideFlags: 0
