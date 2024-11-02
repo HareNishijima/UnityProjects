@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    Rigidbody2D rb;
     Vector2 jumpVector;
 
     PlayerState playerState;
@@ -18,7 +17,6 @@ public class PlayerJump : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         jumpVector = Vector2.zero;
         playerState = GetComponent<PlayerState>();
         playerTransform = GetComponent<PlayerTransform>();
@@ -32,11 +30,13 @@ public class PlayerJump : MonoBehaviour
             playerState.ToRising();
 
             jumpVector = new Vector2(0f, startRising);
+            playerTransform.Jump(jumpVector);
         }
         // ボタン長押しでジャンプ上昇中
         if (playerState.IsRising() && Input.GetButton("Jump"))
         {
             jumpVector -= new Vector2(0f, deltaRising);
+            playerTransform.Jump(jumpVector);
         }
         // 上昇中にボタンを離すと落下開始
         if (playerState.IsRising() && Input.GetButtonUp("Jump"))
@@ -49,11 +49,7 @@ public class PlayerJump : MonoBehaviour
             float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFalling, minFalling);
 
             jumpVector = new Vector2(0f, newJumpVectorY);
+            playerTransform.Jump(jumpVector);
         }
-    }
-
-    void FixedUpdate()
-    {
-        playerTransform.Jump(jumpVector);
     }
 }

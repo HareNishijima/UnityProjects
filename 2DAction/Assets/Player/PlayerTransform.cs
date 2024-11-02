@@ -6,20 +6,25 @@ public class PlayerTransform : MonoBehaviour
 
     Vector2 moveVector;
     Vector2 jumpVector;
+    PlayerCollisionCheck playerCollisionCheck;
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         moveVector = Vector2.zero;
         jumpVector = Vector2.zero;
+        playerCollisionCheck = GetComponent<PlayerCollisionCheck>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(moveVector.x, jumpVector.y));
 
         moveVector = Vector2.zero;
         jumpVector = Vector2.zero;
+
+        // 判定のチェック
+        playerCollisionCheck.CheckGround();
     }
 
     public void Move(Vector2 v)

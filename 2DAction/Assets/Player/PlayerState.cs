@@ -6,9 +6,10 @@ public class PlayerState : MonoBehaviour
 {
 
     enum AttackState { Ready, Attack };
-    AttackState attackstate;
+    [SerializeField] AttackState attackstate;
+
     enum JumpState { Ground, Rising, Falling };
-    JumpState jumpState;
+    [SerializeField] JumpState jumpState;
 
     // Start is called before the first frame update
     void Start()
