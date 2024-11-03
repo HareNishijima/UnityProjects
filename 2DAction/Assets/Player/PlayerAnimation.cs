@@ -8,12 +8,14 @@ public class PlayerAnimation : MonoBehaviour
 
     Animator animator;
     PlayerTransform playerTransform;
+    PlayerState playerState;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         playerTransform = GetComponent<PlayerTransform>();
+        playerState = GetComponent<PlayerState>();
     }
 
     // Update is called once per frame
@@ -21,5 +23,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         Vector2 moveVec = playerTransform.GetMoveVector();
         Vector2 jumpVec = playerTransform.GetJumpVector();
+
+        animator.SetFloat("XSpeed", Mathf.Abs(moveVec.x));
     }
 }
