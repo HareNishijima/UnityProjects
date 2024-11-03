@@ -451,7 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b47a2314434864e98e1a5227246afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackstate: 0
   jumpState: 0
 --- !u!114 &1372961918
 MonoBehaviour:
@@ -465,10 +464,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d7ef274d9a314984464954ecbf2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRising: 60
-  deltaRising: 0.2
+  startRising: 40
+  deltaRising: 0.1
   deltaFalling: 0.1
-  minFalling: -50
+  minFalling: -30
 --- !u!95 &1372961919
 Animator:
   serializedVersion: 5
