@@ -465,9 +465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d7ef274d9a314984464954ecbf2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRising: 40
-  deltaRising: 0.1
-  deltaFalling: 0.1
+  startRising: 25
+  maxRisingTime: 0.3
+  deltaFalling: 0.2
   minFalling: -30
 --- !u!95 &1372961919
 Animator:

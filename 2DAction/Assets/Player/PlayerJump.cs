@@ -10,9 +10,11 @@ public class PlayerJump : MonoBehaviour
     PlayerTransform playerTransform;
 
     public float startRising;
-    public float deltaRising;
+    public float maxRisingTime;
     public float deltaFalling;
     public float minFalling;
+
+    float risingTime;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class PlayerJump : MonoBehaviour
         jumpVector = Vector2.zero;
         playerState = GetComponent<PlayerState>();
         playerTransform = GetComponent<PlayerTransform>();
+        risingTime = 0f;
     }
 
     void Update()
@@ -28,6 +31,7 @@ public class PlayerJump : MonoBehaviour
         if (playerState.IsGround() && Input.GetButtonDown("Jump"))
         {
             playerState.ToRising();
+            risingTime = 0f;
 
             jumpVector = new Vector2(0f, startRising);
             playerTransform.Jump(jumpVector);
@@ -35,11 +39,11 @@ public class PlayerJump : MonoBehaviour
         // ボタン長押しでジャンプ上昇中
         if (playerState.IsRising() && Input.GetButton("Jump"))
         {
-            jumpVector -= new Vector2(0f, deltaRising);
+            risingTime += Time.deltaTime;
             playerTransform.Jump(jumpVector);
         }
-        // 上昇中にボタンを離すと落下開始
-        if (playerState.IsRising() && Input.GetButtonUp("Jump"))
+        // 上昇中にボタンを離す、もしくは一定時間経過すると落下開始
+        if (playerState.IsRising() && Input.GetButtonUp("Jump") || risingTime >= maxRisingTime)
         {
             playerState.ToFalling();
         }
