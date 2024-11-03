@@ -25,5 +25,8 @@ public class PlayerAnimation : MonoBehaviour
         Vector2 jumpVec = playerTransform.GetJumpVector();
 
         animator.SetFloat("XSpeed", Mathf.Abs(moveVec.x));
+        animator.SetFloat("YSpeed", jumpVec.y);
+
+        animator.SetBool("IsGround", playerState.IsGround());
     }
 }
