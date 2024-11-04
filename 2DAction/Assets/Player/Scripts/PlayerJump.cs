@@ -55,5 +55,10 @@ public class PlayerJump : MonoBehaviour
             jumpVector = new Vector2(0f, newJumpVectorY);
             playerTransform.Jump(jumpVector);
         }
+        // 着地
+        if (playerState.IsGround())
+        {
+            jumpVector = Vector2.zero;
+        }
     }
 }
