@@ -19,5 +19,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         playerTransform.Move();
+
+        // 判定のチェック
+        playerCollisionCheck.CheckGround();
     }
 }
