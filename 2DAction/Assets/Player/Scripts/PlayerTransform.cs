@@ -16,7 +16,7 @@ public class PlayerTransform : MonoBehaviour
         playerCollisionCheck = GetComponent<PlayerCollisionCheck>();
     }
 
-    void Update()
+    public void Move()
     {
         rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(moveVector.x, jumpVector.y) * Time.fixedDeltaTime);
 
