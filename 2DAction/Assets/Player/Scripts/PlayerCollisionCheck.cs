@@ -16,11 +16,18 @@ public class PlayerCollisionCheck : MonoBehaviour
 
     public void CheckGround()
     {
-        if (!playerState.IsFalling()) return;
+        // 接地状態か落下状態でしか接地判定を行わない
+        if (!(playerState.IsGround() || playerState.IsFalling())) return;
 
         bool isTouching = rb.IsTouching(contactFilter2D);
 
-        if (isTouching)
+        // 接地状態から落下
+        if (playerState.IsGround() && !isTouching)
+        {
+            playerState.ToFalling();
+        }
+        // 落下状態から接地
+        else if (playerState.IsFalling() && isTouching)
         {
             playerState.ToGround();
         }
