@@ -43,7 +43,7 @@ public class PlayerJump : MonoBehaviour
             playerTransform.Jump(jumpVector);
         }
         // 上昇中にボタンを離す、もしくは一定時間経過すると落下開始
-        if (playerState.IsRising() && Input.GetButtonUp("Jump") || risingTime >= maxRisingTime)
+        if (playerState.IsRising() && (Input.GetButtonUp("Jump") || risingTime >= maxRisingTime))
         {
             playerState.ToFalling();
         }
