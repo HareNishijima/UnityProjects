@@ -19,7 +19,7 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Animation()
     {
         Vector2 moveVec = playerTransform.GetMoveVector();
         Vector2 jumpVec = playerTransform.GetJumpVector();

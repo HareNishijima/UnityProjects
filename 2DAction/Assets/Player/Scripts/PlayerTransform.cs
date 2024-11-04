@@ -13,12 +13,9 @@ public class PlayerTransform : MonoBehaviour
         jumpVector = Vector2.zero;
     }
 
-    public void Move()
+    public void MovePosition()
     {
         rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(moveVector.x, jumpVector.y) * Time.fixedDeltaTime);
-
-        moveVector = Vector2.zero;
-        jumpVector = Vector2.zero;
     }
 
     public void Move(Vector2 v)
@@ -39,5 +36,10 @@ public class PlayerTransform : MonoBehaviour
     public Vector2 GetJumpVector()
     {
         return jumpVector;
+    }
+
+    public void InitVector(){
+        moveVector = Vector2.zero;
+        jumpVector = Vector2.zero;
     }
 }
