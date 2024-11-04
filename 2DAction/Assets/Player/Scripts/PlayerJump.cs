@@ -25,7 +25,7 @@ public class PlayerJump : MonoBehaviour
         risingTime = 0f;
     }
 
-    void Update()
+    public void JumpInput()
     {
         // ジャンプ開始
         if (playerState.IsGround() && Input.GetButtonDown("Jump"))

@@ -15,7 +15,7 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    void Update()
+    public void MoveInput()
     {
         AxisRawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
