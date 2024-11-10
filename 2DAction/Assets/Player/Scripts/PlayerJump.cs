@@ -61,4 +61,9 @@ public class PlayerJump : MonoBehaviour
             jumpVector = Vector2.zero;
         }
     }
+
+    public void JumpVectorSetZero()
+    {
+        jumpVector = Vector2.zero;
+    }
 }

@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
         playerTransform.MovePosition();
 
         // 判定のチェック
+        playerCollisionCheck.CheckHeadHit();
         playerCollisionCheck.CheckGround();
 
         // アニメーション遷移
