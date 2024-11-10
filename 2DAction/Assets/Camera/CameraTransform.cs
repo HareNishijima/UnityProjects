@@ -5,16 +5,26 @@ using UnityEngine;
 public class CameraTransform : MonoBehaviour
 {
     public float cameraAreaLimit = 3f;
+    GameObject playerObject;
 
-    public void cameraMove(Vector2 playerPosition)
+    void Start()
     {
-        // プレイヤーがカメラからどのくらい離れているかを計算
+        playerObject = GameObject.FindWithTag("Player");
+    }
+
+    void LateUpdate()
+    {
         Vector2 cameraPosition = transform.position;
-        float distance = Mathf.Abs(playerPosition.x - cameraPosition.x);
+        Vector2 playerPosition = playerObject.transform.position;
+
+        // プレイヤーがカメラからどのくらい離れているかを計算
+        float distance = Mathf.Abs(playerPosition.y - cameraPosition.y);
 
         // 一定の距離離れていたら追従する
-        if (distance <= cameraAreaLimit) return;
-        float diff = distance - cameraAreaLimit;
-        transform.position += new Vector3(diff * Mathf.Sign(playerPosition.x - cameraPosition.x), 0f, 0f);
+        if (distance > cameraAreaLimit)
+        {
+            float diff = distance - cameraAreaLimit;
+            transform.position += new Vector3(0f, diff * Mathf.Sign(playerPosition.y - cameraPosition.y), 0f);
+        }
     }
 }

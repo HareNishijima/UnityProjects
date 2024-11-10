@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5682a8d918fd81a4095081c578c968d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraAreaLimit: 2
+  cameraAreaLimit: 4
 --- !u!1 &1372961907
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 1372961922}
   - component: {fileID: 1372961923}
   - component: {fileID: 1372961924}
+  - component: {fileID: 1372961925}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -516,12 +517,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3dc437187f0da48bada5df32aa01a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactFilter2D:
+  topFilter:
     useTriggers: 0
     useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
-    useNormalAngle: 0
+    useNormalAngle: 1
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: -70
+    maxNormalAngle: -110
+  bottomFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 1
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
@@ -552,6 +567,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fce92cc3a390554fbf356292d385d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1372961925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372961907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e78e083caff89394ba6bbd518d1c245b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1664450446
