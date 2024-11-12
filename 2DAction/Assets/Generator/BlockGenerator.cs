@@ -11,7 +11,7 @@ public class BlockGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int y = 12; y < 30; y += 3)
+        for (int y = 3; y < 30; y += 3)
         {
 
             int x = Random.Range(-15, 15);
