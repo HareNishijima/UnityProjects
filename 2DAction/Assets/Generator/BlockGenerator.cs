@@ -11,7 +11,7 @@ public class BlockGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int y = 3; y < 30; y += 3)
+        for (int y = 3; y < 30; y += 2)
         {
 
             int x = Random.Range(-15, 15);
@@ -19,8 +19,6 @@ public class BlockGenerator : MonoBehaviour
 
             tilemap.SetTile(new Vector3Int(x - 1, y + diff, 0), blockTile);
             tilemap.SetTile(new Vector3Int(x, y + diff, 0), blockTile);
-            tilemap.SetTile(new Vector3Int(x + 1, y + diff, 0), blockTile);
-
         }
 
     }
