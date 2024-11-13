@@ -21,7 +21,7 @@ public class BlockDeleter : MonoBehaviour
 
         for (int x = -19; x < 19; x++)
         {
-            tilemap.SetTile(new Vector3Int(x, y - 10, 0), null);
+            tilemap.SetTile(new Vector3Int(x, y - 20, 0), null);
         }
     }
 }
