@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
 
-    enum JumpState { Ground, Rising, Falling };
+    enum JumpState { Ground, Charging, Rising, Falling };
     [SerializeField] JumpState jumpState;
 
     // Start is called before the first frame update
@@ -16,6 +16,10 @@ public class PlayerState : MonoBehaviour
     public bool IsGround()
     {
         return jumpState == JumpState.Ground;
+    }
+    public bool ICharging()
+    {
+        return jumpState == JumpState.Charging;
     }
     public bool IsRising()
     {
@@ -28,6 +32,10 @@ public class PlayerState : MonoBehaviour
     public void ToGround()
     {
         jumpState = JumpState.Ground;
+    }
+    public void ToCharging()
+    {
+        jumpState = JumpState.Charging;
     }
     public void ToRising()
     {
