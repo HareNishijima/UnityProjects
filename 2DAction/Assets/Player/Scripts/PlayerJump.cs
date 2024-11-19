@@ -5,18 +5,15 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     Vector2 jumpVector;
-
     PlayerState playerState;
     PlayerTransform playerTransform;
 
-    public float startRising;
-    public float maxRisingTime;
-    public float deltaFalling;
-    public float minFalling;
+    public float startRisingSpeed;
+    public float deltaFallingSpeed;
+    public float minFallingSpeed;
     public float deltaCharge;
     public float maxCharge;
 
-    float risingTime;
     float charge;
 
     // Start is called before the first frame update
@@ -25,7 +22,6 @@ public class PlayerJump : MonoBehaviour
         jumpVector = Vector2.zero;
         playerState = GetComponent<PlayerState>();
         playerTransform = GetComponent<PlayerTransform>();
-        risingTime = 0f;
         charge = 0f;
     }
 
@@ -36,7 +32,7 @@ public class PlayerJump : MonoBehaviour
         {
             playerState.ToCharge();
             charge = 0f;
-            jumpVector = new Vector2(0f, startRising);
+            jumpVector = new Vector2(0f, startRisingSpeed);
         }
         // ジャンプタメ中
         if (Input.GetButton("Jump") && playerState.IsCharge())
@@ -62,7 +58,7 @@ public class PlayerJump : MonoBehaviour
         // 落下中
         if (playerState.IsFalling())
         {
-            float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFalling, minFalling);
+            float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFallingSpeed, minFallingSpeed);
 
             jumpVector = new Vector2(0f, newJumpVectorY);
             playerTransform.Jump(jumpVector);
@@ -72,42 +68,6 @@ public class PlayerJump : MonoBehaviour
         {
             jumpVector = Vector2.zero;
         }
-
-
-
-        // // ジャンプ開始
-        // if (playerState.IsGround() && Input.GetButtonDown("Jump"))
-        // {
-        //     playerState.ToRising();
-        //     risingTime = 0f;
-
-        //     jumpVector = new Vector2(0f, startRising);
-        //     playerTransform.Jump(jumpVector);
-        // }
-        // // ボタン長押しでジャンプ上昇中
-        // if (playerState.IsRising() && Input.GetButton("Jump"))
-        // {
-        //     risingTime += Time.deltaTime;
-        //     playerTransform.Jump(jumpVector);
-        // }
-        // // 上昇中にボタンを離す、もしくは一定時間経過すると落下開始
-        // if (playerState.IsRising() && (Input.GetButtonUp("Jump") || risingTime >= maxRisingTime))
-        // {
-        //     playerState.ToFalling();
-        // }
-        // // 落下中
-        // if (playerState.IsFalling())
-        // {
-        //     float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFalling, minFalling);
-
-        //     jumpVector = new Vector2(0f, newJumpVectorY);
-        //     playerTransform.Jump(jumpVector);
-        // }
-        // // 着地
-        // if (playerState.IsGround())
-        // {
-        //     jumpVector = Vector2.zero;
-        // }
     }
 
     public void JumpVectorSetZero()
