@@ -27,39 +27,83 @@ public class PlayerJump : MonoBehaviour
 
     public void JumpInput()
     {
-        // ジャンプ開始
-        if (playerState.IsGround() && Input.GetButtonDown("Jump"))
-        {
-            playerState.ToRising();
-            risingTime = 0f;
+        // // ジャンプタメ開始
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        //     playerState.ToCharging();
+        //     charge = 0f;
+        //     jumpVector = new Vector2(0f, startRising);
+        // }
+        // // ジャンプタメ中
+        // if (Input.GetButton("Jump") && playerState.IsCharging())
+        // {
+        //     charge += deltaCharge;
+        // }
+        // // ジャンプタメ解除
+        // if (Input.GetButtonUp("Jump") && playerState.IsCharging())
+        // {
+        //     playerState.ToRising();
+        // }
+        // // 上昇
+        // if (playerState.IsRising() && charge >= 0f)
+        // {
+        //     charge -= deltaCharge;
+        //     playerTransform.Jump(jumpVector);
+        // }
+        // // 下降開始
+        // if (playerState.IsRising() && charge < 0f)
+        // {
+        //     playerState.ToFalling();
+        // }
+        // // 落下中
+        // if (playerState.IsFalling())
+        // {
+        //     float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFalling, minFalling);
 
-            jumpVector = new Vector2(0f, startRising);
-            playerTransform.Jump(jumpVector);
-        }
-        // ボタン長押しでジャンプ上昇中
-        if (playerState.IsRising() && Input.GetButton("Jump"))
-        {
-            risingTime += Time.deltaTime;
-            playerTransform.Jump(jumpVector);
-        }
-        // 上昇中にボタンを離す、もしくは一定時間経過すると落下開始
-        if (playerState.IsRising() && (Input.GetButtonUp("Jump") || risingTime >= maxRisingTime))
-        {
-            playerState.ToFalling();
-        }
-        // 落下中
-        if (playerState.IsFalling())
-        {
-            float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFalling, minFalling);
+        //     jumpVector = new Vector2(0f, newJumpVectorY);
+        //     playerTransform.Jump(jumpVector);
+        // }
+        // // 着地
+        // if (playerState.IsGround())
+        // {
+        //     jumpVector = Vector2.zero;
+        // }
 
-            jumpVector = new Vector2(0f, newJumpVectorY);
-            playerTransform.Jump(jumpVector);
-        }
-        // 着地
-        if (playerState.IsGround())
-        {
-            jumpVector = Vector2.zero;
-        }
+
+
+        // // ジャンプ開始
+        // if (playerState.IsGround() && Input.GetButtonDown("Jump"))
+        // {
+        //     playerState.ToRising();
+        //     risingTime = 0f;
+
+        //     jumpVector = new Vector2(0f, startRising);
+        //     playerTransform.Jump(jumpVector);
+        // }
+        // // ボタン長押しでジャンプ上昇中
+        // if (playerState.IsRising() && Input.GetButton("Jump"))
+        // {
+        //     risingTime += Time.deltaTime;
+        //     playerTransform.Jump(jumpVector);
+        // }
+        // // 上昇中にボタンを離す、もしくは一定時間経過すると落下開始
+        // if (playerState.IsRising() && (Input.GetButtonUp("Jump") || risingTime >= maxRisingTime))
+        // {
+        //     playerState.ToFalling();
+        // }
+        // // 落下中
+        // if (playerState.IsFalling())
+        // {
+        //     float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFalling, minFalling);
+
+        //     jumpVector = new Vector2(0f, newJumpVectorY);
+        //     playerTransform.Jump(jumpVector);
+        // }
+        // // 着地
+        // if (playerState.IsGround())
+        // {
+        //     jumpVector = Vector2.zero;
+        // }
     }
 
     public void JumpVectorSetZero()
