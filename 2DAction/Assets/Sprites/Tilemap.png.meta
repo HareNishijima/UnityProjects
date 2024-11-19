@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4e450197d020954eb0b6ed2f20a2b3c
-      internalID: -1952483305
+      spriteID: d3c02cda02df7f44d9366107a4021754
+      internalID: -1597330350
       vertices: []
       indices: 
       edges: []
@@ -141,15 +141,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 1}
+        - {x: 4, y: 1}
+        - {x: 4, y: 4}
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: 4, y: -4}
+      - - {x: -4, y: 4}
+        - {x: -4, y: 1}
+        - {x: 4, y: 1}
         - {x: 4, y: 4}
       tessellationDetail: 0
       bones: []
-      spriteID: 5178fb91134ab924c8db3cf547f2e96c
-      internalID: -2104481848
+      spriteID: d603083dd10c8774c9f330474ca1139d
+      internalID: -139177860
       vertices: []
       indices: 
       edges: []
@@ -165,16 +170,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -4, y: 4}
+      outline:
+      - - {x: -4, y: 0}
         - {x: -4, y: -4}
         - {x: 4, y: -4}
-        - {x: 4, y: 4}
+        - {x: 4, y: 0}
+      physicsShape:
+      - - {x: -4, y: 0}
+        - {x: -4, y: -4}
+        - {x: 4, y: -4}
+        - {x: 4, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: c2fb45ae83aac734b90b1e8301158f53
-      internalID: -1857354893
+      spriteID: 6a999243ebe70d24ea5fdd6410374337
+      internalID: 791244839
       vertices: []
       indices: 
       edges: []
@@ -190,16 +199,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: -3}
+        - {x: 3, y: -3}
+        - {x: 3, y: 4}
       physicsShape:
-      - - {x: -2, y: 3}
-        - {x: -2, y: -4}
-        - {x: 3, y: -4}
-        - {x: 3, y: 3}
+      - - {x: -3, y: 3}
+        - {x: -3, y: -2}
+        - {x: 2, y: -2}
+        - {x: 2, y: 3}
       tessellationDetail: 0
       bones: []
-      spriteID: 751c6f777d290db4ab2d87904991c45e
-      internalID: 537373610
+      spriteID: 6426dca171800a04e89af8a42601b9a8
+      internalID: 1991658669
       vertices: []
       indices: 
       edges: []
@@ -215,10 +228,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tilemap_0: -1952483305
-      tilemap_1: -2104481848
-      tilemap_2: -1857354893
-      tilemap_3: 537373610
+      tilemap_0: -1597330350
+      tilemap_1: -139177860
+      tilemap_2: 791244839
+      tilemap_3: 1991658669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
