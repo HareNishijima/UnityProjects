@@ -12,4 +12,9 @@ public class SceneDirector : MonoBehaviour
     {
         gameScene = GameScene.Play;
     }
+
+    public void ToClear()
+    {
+        gameScene = GameScene.Clear;
+    }
 }
