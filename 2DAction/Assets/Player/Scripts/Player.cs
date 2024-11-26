@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     PlayerMove playerMove;
     PlayerJump playerJump;
 
+    SceneDirector sceneDirector;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +21,14 @@ public class Player : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
         playerMove = GetComponent<PlayerMove>();
         playerJump = GetComponent<PlayerJump>();
+        sceneDirector = GameObject.FindWithTag("Director").GetComponent<SceneDirector>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (sceneDirector.IsClear()) return;
+
         playerMove.MoveInput();
         playerJump.JumpInput();
 

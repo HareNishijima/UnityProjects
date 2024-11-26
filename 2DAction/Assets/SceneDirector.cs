@@ -13,6 +13,16 @@ public class SceneDirector : MonoBehaviour
         gameScene = GameScene.Play;
     }
 
+    public bool IsPlay()
+    {
+        return gameScene == GameScene.Play;
+    }
+
+    public bool IsClear()
+    {
+        return gameScene == GameScene.Clear;
+    }
+
     public void ToClear()
     {
         gameScene = GameScene.Clear;
