@@ -23,8 +23,18 @@ public class SceneDirector : MonoBehaviour
         return gameScene == GameScene.Clear;
     }
 
+    public bool IsGameOver()
+    {
+        return gameScene == GameScene.GameOver;
+    }
+
     public void ToClear()
     {
         gameScene = GameScene.Clear;
+    }
+
+    public void ToGameOver()
+    {
+        gameScene = GameScene.GameOver;
     }
 }
