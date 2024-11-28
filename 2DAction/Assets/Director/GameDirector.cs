@@ -22,5 +22,10 @@ public class GameDirector : MonoBehaviour
         {
             SceneManager.LoadScene("Sample");
         }
+
+        if (sceneDirector.IsGameOver() && Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene("Sample");
+        }
     }
 }

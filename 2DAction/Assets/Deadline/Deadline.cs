@@ -17,6 +17,7 @@ public class Deadline : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(sceneDirector.IsGameOver()) return;
         transform.position += new Vector3(0f, speed, 0f) * Time.deltaTime;
     }
 
