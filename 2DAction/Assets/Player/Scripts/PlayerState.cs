@@ -7,11 +7,13 @@ public class PlayerState : MonoBehaviour
 
     enum JumpState { Ground, Charge, Rising, Falling };
     [SerializeField] JumpState jumpState;
+    bool isDead;
 
     // Start is called before the first frame update
     void Start()
     {
         jumpState = JumpState.Ground;
+        isDead = false;
     }
     public bool IsGround()
     {
@@ -29,6 +31,10 @@ public class PlayerState : MonoBehaviour
     {
         return jumpState == JumpState.Falling;
     }
+    public bool IsDead()
+    {
+        return isDead;
+    }
     public void ToGround()
     {
         jumpState = JumpState.Ground;
@@ -44,5 +50,10 @@ public class PlayerState : MonoBehaviour
     public void ToFalling()
     {
         jumpState = JumpState.Falling;
+    }
+    public void ToDead()
+    {
+        isDead = true;
+        GetComponent<PlayerAnimation>().ToDead();
     }
 }

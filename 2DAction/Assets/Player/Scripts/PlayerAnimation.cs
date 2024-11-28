@@ -30,4 +30,9 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool("IsGround", playerState.IsGround());
         animator.SetBool("IsCharge", playerState.IsCharge());
     }
+
+    public void ToDead()
+    {
+        animator.SetBool("IsDead", true);
+    }
 }

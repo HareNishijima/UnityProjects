@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     PlayerAnimation playerAnimation;
     PlayerMove playerMove;
     PlayerJump playerJump;
+    PlayerState playerState;
 
     SceneDirector sceneDirector;
 
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
         playerMove = GetComponent<PlayerMove>();
         playerJump = GetComponent<PlayerJump>();
+        playerState = GetComponent<PlayerState>();
         sceneDirector = GameObject.FindWithTag("Director").GetComponent<SceneDirector>();
     }
 
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (sceneDirector.IsClear()) return;
+        if (playerState.IsDead()) return;
 
         playerMove.MoveInput();
         playerJump.JumpInput();

@@ -25,6 +25,7 @@ public class Deadline : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             sceneDirector.ToGameOver();
+            col.gameObject.GetComponent<PlayerState>().ToDead();
             speed = 0f;
         }
     }
