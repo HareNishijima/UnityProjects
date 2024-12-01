@@ -5,19 +5,22 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
 
-    enum JumpState { Ground, Charge, Rising, Falling };
+    enum JumpState { Idle, Charge, Rising, Falling };
     [SerializeField] JumpState jumpState;
-    bool isDead;
+    [SerializeField] bool isGround;
+    [SerializeField] bool isDead;
 
     // Start is called before the first frame update
     void Start()
     {
-        jumpState = JumpState.Ground;
+        jumpState = JumpState.Idle;
+        isGround = true;
         isDead = false;
     }
     public bool IsGround()
     {
-        return jumpState == JumpState.Ground;
+        // return jumpState == JumpState.Ground;
+        return isGround;
     }
     public bool IsJumpCharge()
     {
@@ -37,7 +40,9 @@ public class PlayerState : MonoBehaviour
     }
     public void ToGround()
     {
-        jumpState = JumpState.Ground;
+        // jumpState = JumpState.Ground;
+        jumpState = JumpState.Idle;
+        isGround = true;
     }
     public void ToJumpCharge()
     {
@@ -46,6 +51,7 @@ public class PlayerState : MonoBehaviour
     public void ToJumpRising()
     {
         jumpState = JumpState.Rising;
+        isGround = false;
     }
     public void ToJumpFalling()
     {
