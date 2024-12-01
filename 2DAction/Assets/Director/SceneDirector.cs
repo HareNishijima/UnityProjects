@@ -10,7 +10,12 @@ public class SceneDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameScene = GameScene.Play;
+        gameScene = GameScene.Ready;
+    }
+
+    public bool IsReady()
+    {
+        return gameScene == GameScene.Ready;
     }
 
     public bool IsPlay()
@@ -26,6 +31,11 @@ public class SceneDirector : MonoBehaviour
     public bool IsGameOver()
     {
         return gameScene == GameScene.GameOver;
+    }
+
+    public void ToPlay()
+    {
+        gameScene = GameScene.Play;
     }
 
     public void ToClear()
