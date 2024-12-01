@@ -11,6 +11,7 @@ public class Goal : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             sceneDirector.ToClear();
+            GameObject.FindWithTag("Deadline").GetComponent<Deadline>().enabled = false;
         }
     }
 }
