@@ -148,8 +148,8 @@ TextureImporter:
         - {x: 4, y: 4}
       physicsShape:
       - - {x: -4, y: 4}
-        - {x: -4, y: 1}
-        - {x: 4, y: 1}
+        - {x: -4, y: 3}
+        - {x: 4, y: 3}
         - {x: 4, y: 4}
       tessellationDetail: 0
       bones: []
