@@ -19,15 +19,15 @@ public class PlayerState : MonoBehaviour
     {
         return jumpState == JumpState.Ground;
     }
-    public bool IsCharge()
+    public bool IsJumpCharge()
     {
         return jumpState == JumpState.Charge;
     }
-    public bool IsRising()
+    public bool IsJumpRising()
     {
         return jumpState == JumpState.Rising;
     }
-    public bool IsFalling()
+    public bool IsJumpFalling()
     {
         return jumpState == JumpState.Falling;
     }
@@ -39,15 +39,15 @@ public class PlayerState : MonoBehaviour
     {
         jumpState = JumpState.Ground;
     }
-    public void ToCharge()
+    public void ToJumpCharge()
     {
         jumpState = JumpState.Charge;
     }
-    public void ToRising()
+    public void ToJumpRising()
     {
         jumpState = JumpState.Rising;
     }
-    public void ToFalling()
+    public void ToJumpFalling()
     {
         jumpState = JumpState.Falling;
     }

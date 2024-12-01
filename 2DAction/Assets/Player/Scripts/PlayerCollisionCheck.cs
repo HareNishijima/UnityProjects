@@ -27,24 +27,24 @@ public class PlayerCollisionCheck : MonoBehaviour
         if (isTouching)
         {
             playerJump.JumpVectorSetZero();
-            playerState.ToFalling();
+            playerState.ToJumpFalling();
         }
     }
 
     public void CheckGround()
     {
         // 接地状態か落下状態でしか接地判定を行わない
-        if (!(playerState.IsGround() || playerState.IsFalling())) return;
+        if (!(playerState.IsGround() || playerState.IsJumpFalling())) return;
 
         bool isTouching = rb.IsTouching(bottomFilter);
 
         // 接地状態から落下
         if (playerState.IsGround() && !isTouching)
         {
-            playerState.ToFalling();
+            playerState.ToJumpFalling();
         }
         // 落下状態から接地
-        else if (playerState.IsFalling() && isTouching)
+        else if (playerState.IsJumpFalling() && isTouching)
         {
             playerState.ToGround();
         }

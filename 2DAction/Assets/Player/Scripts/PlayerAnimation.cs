@@ -28,7 +28,7 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetFloat("YSpeed", jumpVec.y);
 
         animator.SetBool("IsGround", playerState.IsGround());
-        animator.SetBool("IsCharge", playerState.IsCharge());
+        animator.SetBool("IsJumpCharge", playerState.IsJumpCharge());
     }
 
     public void ToDead()
