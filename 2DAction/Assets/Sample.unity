@@ -919,6 +919,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpState: 0
+  isGround: 0
+  isDead: 0
 --- !u!114 &1372961918
 MonoBehaviour:
   m_ObjectHideFlags: 0

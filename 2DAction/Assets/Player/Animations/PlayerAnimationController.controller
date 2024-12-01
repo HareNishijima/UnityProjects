@@ -190,7 +190,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsCharge
+    m_ConditionEvent: IsJumpCharge
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4903227919018992186}
@@ -285,7 +285,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsCharge
+  - m_Name: IsJumpCharge
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -319,7 +319,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsCharge
+    m_ConditionEvent: IsJumpCharge
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6883646120626303887}
@@ -447,8 +447,8 @@ AnimatorStateMachine:
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 8038404784811291714}
-  - {fileID: 3264449814105357247}
   - {fileID: 1223185979013254521}
+  - {fileID: 3264449814105357247}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []

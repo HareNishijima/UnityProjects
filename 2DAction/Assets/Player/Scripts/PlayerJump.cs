@@ -32,7 +32,6 @@ public class PlayerJump : MonoBehaviour
         {
             playerState.ToJumpCharge();
             charge = 0f;
-            jumpVector = new Vector2(0f, startRisingSpeed);
         }
         // ジャンプタメ中
         if (Input.GetButton("Jump") && playerState.IsJumpCharge())
@@ -43,11 +42,13 @@ public class PlayerJump : MonoBehaviour
         if (Input.GetButtonUp("Jump") && playerState.IsJumpCharge())
         {
             playerState.ToJumpRising();
+            jumpVector = new Vector2(0f, startRisingSpeed);
         }
         // 上昇
         if (playerState.IsJumpRising() && charge >= 0f)
         {
             charge -= deltaCharge * Time.deltaTime;
+            
             playerTransform.Jump(jumpVector);
         }
         // 下降開始
@@ -55,12 +56,12 @@ public class PlayerJump : MonoBehaviour
         {
             playerState.ToJumpFalling();
         }
-        // 落下中
-        if (playerState.IsJumpFalling())
+        // 空中かつジャンプ上昇中でなければ落下
+        if (!playerState.IsGround() && !playerState.IsJumpRising())
         {
             float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFallingSpeed, minFallingSpeed);
-
             jumpVector = new Vector2(0f, newJumpVectorY);
+
             playerTransform.Jump(jumpVector);
         }
     }
