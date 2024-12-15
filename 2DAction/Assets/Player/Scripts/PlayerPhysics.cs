@@ -32,8 +32,6 @@ public class PlayerPhysics : MonoBehaviour
             // 落下かつジャンプ上昇中でなければ落下
             float newphysicsVectorY = Mathf.Max(physicsVector.y - deltaFallingSpeed, minFallingSpeed);
             physicsVector = new Vector2(0f, newphysicsVectorY);
-
-            playerTransform.SetPhycisVector(physicsVector);
         }
 
         playerTransform.SetPhycisVector(physicsVector);
