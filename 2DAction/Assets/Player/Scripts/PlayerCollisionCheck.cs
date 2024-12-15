@@ -41,7 +41,7 @@ public class PlayerCollisionCheck : MonoBehaviour
         // 接地状態から落下
         if (playerState.IsGround() && !isTouching)
         {
-            playerState.ToJumpFalling();
+            playerState.LeaveGround();
         }
         // 落下状態から接地
         else if (playerState.IsJumpFalling() && isTouching)

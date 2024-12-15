@@ -44,6 +44,11 @@ public class PlayerState : MonoBehaviour
         jumpState = JumpState.Idle;
         isGround = true;
     }
+    public void LeaveGround()
+    {
+        jumpState = JumpState.Falling;
+        isGround = false;
+    }
     public void ToJumpCharge()
     {
         jumpState = JumpState.Charge;
