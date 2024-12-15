@@ -24,9 +24,9 @@ public class PlayerTransform : MonoBehaviour
         rigidbody2D.MovePosition(newPosition);
     }
 
-    public void Move(Vector2 v)
+    public void SetMove(Vector2 v)
     {
-        moveVector = new Vector2(v.x, 0f);
+        moveVector = v;
     }
 
     public void SetPhycisVector(Vector2 v)

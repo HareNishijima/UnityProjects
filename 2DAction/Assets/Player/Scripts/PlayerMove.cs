@@ -32,6 +32,6 @@ public class PlayerMove : MonoBehaviour
         }
 
         Vector2 moveVector = AxisRawInput * moveSpeed;
-        playerTransform.Move(moveVector);
+        playerTransform.SetMove(new Vector2(moveVector.x, 0f));
     }
 }
