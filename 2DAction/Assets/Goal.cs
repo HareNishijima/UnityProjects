@@ -5,6 +5,12 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     public SceneDirector sceneDirector;
+    Timer timer;
+
+    void Start()
+    {
+        timer = GameObject.FindWithTag("Timer").GetComponent<Timer>();
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -12,6 +18,7 @@ public class Goal : MonoBehaviour
         {
             sceneDirector.ToClear();
             GameObject.FindWithTag("Deadline").GetComponent<Deadline>().enabled = false;
+            timer.SetActive(false);
         }
     }
 }

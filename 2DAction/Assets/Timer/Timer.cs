@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    bool timerActive;
+    bool active;
     // time[s]
     float time;
     // mm:ss:msms
@@ -16,14 +16,14 @@ public class Timer : MonoBehaviour
     void Start()
     {
         time = 0f;
-        timerActive = true;
+        active = false;
         timerText = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timerActive) time += Time.deltaTime;
+        if (active) time += Time.deltaTime;
 
         timerText.text = formatTimer(time);
     }
@@ -36,5 +36,10 @@ public class Timer : MonoBehaviour
         int ms = Mathf.FloorToInt(time * 100f % 100f);
 
         return $"{m:00}:{s:00}:{ms:00}";
+    }
+
+    public void SetActive(bool b)
+    {
+        active = b;
     }
 }
