@@ -1,3 +1,4 @@
+using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
 public class PlayerTransform : MonoBehaviour
@@ -5,18 +6,24 @@ public class PlayerTransform : MonoBehaviour
     new Rigidbody2D rigidbody2D;
     Vector2 moveVector;
     Vector2 jumpVector;
+    Vector2 physicsVector;
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         moveVector = Vector2.zero;
         jumpVector = Vector2.zero;
+        physicsVector = Vector2.zero;
     }
 
     public void MovePosition()
     {
-        Vector2 newPosition = rigidbody2D.position + new Vector2(moveVector.x, jumpVector.y) * Time.fixedDeltaTime;
-        newPosition = new Vector2(Mathf.Max(-7f, Mathf.Min(newPosition.x, 7f)), newPosition.y);
+        Vector2 newMoveVector = moveVector * Time.fixedDeltaTime;
+        Vector2 newJumpVector = jumpVector * Time.fixedDeltaTime;
+        Vector2 newPhysicsVector = physicsVector * Time.fixedDeltaTime;
+
+        Vector2 newPosition = rigidbody2D.position + newMoveVector + newJumpVector + newPhysicsVector;
+
         rigidbody2D.MovePosition(newPosition);
     }
 
@@ -28,6 +35,11 @@ public class PlayerTransform : MonoBehaviour
     public void Jump(Vector2 v)
     {
         jumpVector = v;
+    }
+
+    public void SetPhycisVector(Vector2 v)
+    {
+        physicsVector = v;
     }
 
     public Vector2 GetMoveVector()
@@ -44,5 +56,6 @@ public class PlayerTransform : MonoBehaviour
     {
         moveVector = Vector2.zero;
         jumpVector = Vector2.zero;
+        physicsVector = Vector2.zero;
     }
 }
