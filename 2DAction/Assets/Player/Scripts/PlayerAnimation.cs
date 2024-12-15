@@ -21,8 +21,8 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     public void Animation()
     {
-        Vector2 moveVec = playerTransform.GetMoveVector();
-        Vector2 jumpVec = playerTransform.GetJumpVector();
+        Vector2 moveVec = playerTransform.GetPlayerVector();
+        Vector2 jumpVec = playerTransform.GetPlayerVector();
 
         animator.SetFloat("XSpeed", Mathf.Abs(moveVec.x));
         animator.SetFloat("YSpeed", jumpVec.y);

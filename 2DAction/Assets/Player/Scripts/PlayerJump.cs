@@ -7,6 +7,7 @@ public class PlayerJump : MonoBehaviour
     Vector2 jumpVector;
     PlayerState playerState;
     PlayerTransform playerTransform;
+    PlayerPhysics playerPhysics;
 
     public float startRisingSpeed;
     public float deltaCharge;
@@ -20,6 +21,7 @@ public class PlayerJump : MonoBehaviour
         jumpVector = Vector2.zero;
         playerState = GetComponent<PlayerState>();
         playerTransform = GetComponent<PlayerTransform>();
+        playerPhysics = GetComponent<PlayerPhysics>();
         charge = 0f;
     }
 
@@ -46,8 +48,8 @@ public class PlayerJump : MonoBehaviour
         if (playerState.IsJumpRising() && charge >= 0f)
         {
             charge -= deltaCharge * Time.deltaTime;
-            
-            playerTransform.Jump(jumpVector);
+
+            playerPhysics.SetPhycisVector(jumpVector);
         }
         // 下降開始
         if (playerState.IsJumpRising() && charge < 0f)

@@ -5,24 +5,21 @@ public class PlayerTransform : MonoBehaviour
 {
     new Rigidbody2D rigidbody2D;
     Vector2 moveVector;
-    Vector2 jumpVector;
     Vector2 physicsVector;
+    Vector2 playerVector;
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         moveVector = Vector2.zero;
-        jumpVector = Vector2.zero;
         physicsVector = Vector2.zero;
+        playerVector = Vector2.zero;
     }
 
     public void MovePosition()
     {
-        Vector2 newMoveVector = moveVector * Time.fixedDeltaTime;
-        Vector2 newJumpVector = jumpVector * Time.fixedDeltaTime;
-        Vector2 newPhysicsVector = physicsVector * Time.fixedDeltaTime;
-
-        Vector2 newPosition = rigidbody2D.position + newMoveVector + newJumpVector + newPhysicsVector;
+        playerVector = (moveVector + physicsVector) * Time.fixedDeltaTime;
+        Vector2 newPosition = rigidbody2D.position + playerVector;
 
         rigidbody2D.MovePosition(newPosition);
     }
@@ -32,30 +29,19 @@ public class PlayerTransform : MonoBehaviour
         moveVector = new Vector2(v.x, 0f);
     }
 
-    public void Jump(Vector2 v)
-    {
-        jumpVector = v;
-    }
-
     public void SetPhycisVector(Vector2 v)
     {
         physicsVector = v;
     }
 
-    public Vector2 GetMoveVector()
+    public Vector2 GetPlayerVector()
     {
-        return moveVector;
-    }
-
-    public Vector2 GetJumpVector()
-    {
-        return jumpVector;
+        return playerVector;
     }
 
     public void InitVector()
     {
         moveVector = Vector2.zero;
-        jumpVector = Vector2.zero;
         physicsVector = Vector2.zero;
     }
 }

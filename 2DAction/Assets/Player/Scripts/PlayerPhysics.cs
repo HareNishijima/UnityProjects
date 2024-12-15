@@ -33,7 +33,7 @@ public class PlayerPhysics : MonoBehaviour
             float newphysicsVectorY = Mathf.Max(physicsVector.y - deltaFallingSpeed, minFallingSpeed);
             physicsVector = new Vector2(0f, newphysicsVectorY);
 
-            playerTransform.Jump(physicsVector);
+            playerTransform.SetPhycisVector(physicsVector);
         }
 
         playerTransform.SetPhycisVector(physicsVector);
