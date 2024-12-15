@@ -9,8 +9,6 @@ public class PlayerJump : MonoBehaviour
     PlayerTransform playerTransform;
 
     public float startRisingSpeed;
-    public float deltaFallingSpeed;
-    public float minFallingSpeed;
     public float deltaCharge;
     public float maxCharge;
 
@@ -55,14 +53,6 @@ public class PlayerJump : MonoBehaviour
         if (playerState.IsJumpRising() && charge < 0f)
         {
             playerState.ToJumpFalling();
-        }
-        // 空中かつジャンプ上昇中でなければ落下
-        if (!playerState.IsGround() && !playerState.IsJumpRising())
-        {
-            float newJumpVectorY = Mathf.Max(jumpVector.y - deltaFallingSpeed, minFallingSpeed);
-            jumpVector = new Vector2(0f, newJumpVectorY);
-
-            playerTransform.Jump(jumpVector);
         }
     }
 
